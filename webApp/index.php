@@ -1,3 +1,6 @@
 <?php
+require_once "vendor/autoload.php";
 
-echo "Hello World !";
+use Sample\MySuperClass;
+
+echo new MySuperClass();
