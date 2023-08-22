@@ -1,7 +1,7 @@
 services:
   php:
     image: cowebturage/php
-    build : ./.docker/htpp/
+    build : .docker/http/
     ports:
       - "8080:80"
     volumes:
