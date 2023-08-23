@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\LandingPage;
 /*
@@ -15,6 +16,10 @@ use App\Http\Livewire\LandingPage;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/db-version', function () {
+    return DB::select("SELECT version()");
 });
 
 Route::get("landing_page", LandingPage::class);
