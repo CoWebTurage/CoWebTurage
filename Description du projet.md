@@ -1,4 +1,5 @@
 # Description du projet
+
 Beaucoup d'entre nous ont déjà vécu des covoiturages où la musique ne correspondait pas du tout à nos goûts personnels, créant une ambiance inconfortable tout au long du trajet, et ne donnant pas envie de renouveller l'expérience.
 
 Le projet "CoWebTurage" réinvente le covoiturage en proposant une expérience unique. 
@@ -19,8 +20,8 @@ Avec des tarifs abordables et des options de paiement sécurisées, CoWebTurage 
 - L'utilisateur doit pouvoir afficher une liste des covoiturages disponibles dans un lieu, pour une destination à une date précise et nombre de places disponibles grâce à des filtres
 - L'utilisateur doit pouvoir réserver un ou plusieurs trajets.
 - Les listes de covoiturage disponibles doivent indiquer l'heure de départ, si un retour est possible et si il y a des détours
-- L'utilisateur qui gère le covoiturage doit pouvoir accepter ou refuser des utilisateurs. 
-- Après avoir effectuer le trajet, l'utilisateur doit pouvoir donner un feedback.
+- L'utilisateur qui gère le covoiturage doit pouvoir accepter ou refuser des utilisateurs.
+- Après avoir effectué le trajet, l'utilisateur doit pouvoir donner un feedback.
 - L'utilisateur peut choisir un partenaire de covoiturage selon ses style musicaux préfèrés.
 - L'utilisateur doit pouvoir communiquer avec les autres utilisateurs par le biais de messages.
 - L'utilisateur doit pouvoir ajouter et modifier ses moyens de paiements.
@@ -31,4 +32,4 @@ Avec des tarifs abordables et des options de paiement sécurisées, CoWebTurage 
 - Backups réguliers des données des utilisateurs.
 - L'interface utilisateur doit être simple à comprendre et utiliser.
 - Le site web doit être compatible avec tous les browsers principaux (Chrome, Firefox, ...)
-- Offrir la possibilité de changer la langue de français à anglais et vice-versa 
+- Offrir la possibilité de changer la langue de français à anglais et vice-versa
