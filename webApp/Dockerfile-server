@@ -1,0 +1,37 @@
+FROM php:8.2
+
+ARG NODE_VERSION=18
+ARG POSTGRES_VERSION=15
+
+WORKDIR /var/www/html
+
+RUN apt-get update
+RUN apt-get install -y gosu zip unzip git supervisor libpq-dev
+RUN curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g npm
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /etc/apt/keyrings/yarn.gpg >/dev/null
+RUN echo "deb [signed-by=/etc/apt/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+RUN curl -sS https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | tee /etc/apt/keyrings/pgdg.gpg >/dev/null
+RUN echo "deb [signed-by=/etc/apt/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt jammy-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN apt-get update
+RUN apt-get install -y yarn
+RUN apt-get install -y postgresql-client-$POSTGRES_VERSION
+RUN apt-get -y autoremove
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN docker-php-ext-install pdo pdo_pgsql pgsql
+
+RUN ln -s /usr/local/bin/php /usr/bin/php
+
+COPY docker/8.2/start-container /usr/local/bin/start-container
+COPY docker/8.2/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/8.2/php.ini /etc/php/8.2/cli/conf.d/99-sail.ini
+
+RUN chmod +x /usr/local/bin/start-container
+
+EXPOSE 80
+
+ENTRYPOINT ["start-container"]

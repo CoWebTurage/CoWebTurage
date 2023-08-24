@@ -1,7 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\HelloWorld;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/db-version', function () {
+    return DB::select("SELECT version()");
+});
+
+Route::get("/hello-world", HelloWorld::class);
