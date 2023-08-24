@@ -1,1 +1,64 @@
-<mxfile host="Electron" modified="2023-08-24T09:40:17.394Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.4.3 Chrome/87.0.4280.141 Electron/11.3.0 Safari/537.36" etag="it3V5lVqRNF1ZTbRKRhd" version="14.4.3" type="device"><diagram id="to54FigBxghi1QSHUGt1" name="Page-1">7Vnbbts4EP0aY59qSNTF3kdfmi4WKTYLd5F2XwJaYiQilEhQtC3363coUbYkOrGKtdOmKOALObyJ58zhDO2Rt8jKDxKL9COPCRshJy5H3nKEkOsjNNIvJ97Xlqnr14ZE0th0OhpW9CsxRsdYNzQmRaej4pwpKrrGiOc5iVTHhqXku263R866qwqcEMuwijCzrfc0VqmxuuHvx4Y/CE1Ss/QUTeqGDDedzU6KFMd81zJ570feQnKu6lJWLgjT4DW41ONunmk9PJgkuRoyIMLhavn0JNGnNMDl/F+JQ/TOzLLFbGM2bB5W7RsEaFZBNE9VxsDiQtGYljRLYD1G1/AZMSoesFS6yDOxUUQWUF4RuSXywUXTEt5jkSdmRSIVKZ/dinsACDyL8IwouYcuZkDge+OgHmTcCoUG5d2RpKkxpW16jA0bt0gOcx+Rg4IB7xuARG8SyANsPwqM3nkYcSFqoT/SksRdPAWnuaqeKZiPgiVYMKNJDoYIECHyCPn8kefKHDcueoaKrIgwge87oIDn42KbQMdL+G8P9gDZsHsTG/bgWrD7Fuz/FIBWH3rYseoCXijJn8iCMw7YLnOeV9BSxnomiwaNH4VjdmYaMhrHepn5LqWKrASO9Jo7CCpgk3yTx5rrpXMhAoJJl4CJTYB/wu/RtQgILAJuscTbKpjeE/BFZyYEA8AU5fkAXobjLUlBv+J1NZVzWkIbxQujlAvB73ZPb88LLfjdV8U/tPC/44VKABywrv6+1RkMVniNC/LzquJwrDe0BN9ZFU0S+FI4gLRK1Od2fa5X37MmRmhkrIDRoHyL14QBz7QSlbdcc6V4doIGxUUrQqRK6eRzpveGbjaCcRyPd/SJZiSmeMylDiC6LnS9DuMZz3UQV+km04GlesPmbv4SJAdvIURlWDwwnvAqyqAbFzmOKN+dbq+i/0Uonwa9BMCzKXfRCc7d65Fu56QahVWFwkcsfqskqXAeYxnr6wAFV0AOw3sdsWBNeLCQaUWuoR4musRhApCLIhDVtjQaouEf+wSdOr0T1A8s3g53qDZv3tVoG5ABkzye6TuZhpXhoqBRF/N6AImtK9lZWFrbDk7surFJwiCCbrvTn4LCrHCnqWynDdPTeVszRcE3MiJmVPsudmYiL+xNpLBMiLImqpg5bPt/kGXn2Qt9gS5/huzCn/Rvh75vn2qTVw1kdoL9zeIActRnDeM4RE39i24bQzZVV5elgbmq7FsVuMFAeKrIamUL55UGT1i59LnU9XspcuJ145ffP9+GKjJ00MvSvrYi7RvAn/ef3rwWQ7fHzwklvm5KaWf6w5RYgAOoQQJti9MZn9FmDpv63K6YUVOvMRwHVrXOyCvKuvmxtXL7szn6m9f/pH/36f/EdW39T96GX57xygs6IBrqgL/870X/g+rxT4a6+/GvGu/9fw==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2023-08-24T10:53:59.780Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="k9rlS5juZQhGQ_FlnTW1" version="21.6.9" type="device">
+  <diagram id="to54FigBxghi1QSHUGt1" name="Page-1">
+    <mxGraphModel dx="421" dy="361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ca6SDkkr2Th5axBZra62-1" value="" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" parent="1" vertex="1">
+          <mxGeometry x="543.5" y="260" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-2" value="" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" parent="1" vertex="1">
+          <mxGeometry x="260" y="260" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-3" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Person.svg;" parent="1" vertex="1">
+          <mxGeometry x="560" y="520" width="39.96" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-4" value="User" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="557" y="570" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-5" value="Laravel Web Application&lt;br&gt;DigitalOcean Droplet" style="text;html=1;align=center;verticalAlign=middle;resizable=1;points=[];autosize=1;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="508.5" y="320" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-6" value="Postgres SQL database&lt;br&gt;neon.tech" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="220" y="330" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-10" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Openstreetmap_logo.svg/1200px-Openstreetmap_logo.svg.png;" parent="1" vertex="1">
+          <mxGeometry x="850" y="230" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-11" value="OpenStreetMap&#39;s Standard tile layer, &lt;br&gt;openrouteservice" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+          <mxGeometry x="805" y="345" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-12" value="" style="endArrow=classic;html=1;entryX=0.343;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" target="ca6SDkkr2Th5axBZra62-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="520" as="sourcePoint" />
+            <mxPoint x="560" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-13" value="Connexion" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+          <mxGeometry x="473.5" y="440" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-14" value="" style="endArrow=classic;html=1;exitX=0.621;exitY=1.028;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="ca6SDkkr2Th5axBZra62-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="430" as="sourcePoint" />
+            <mxPoint x="602" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-15" value="JWT" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+          <mxGeometry x="610" y="440" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-16" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.583;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ca6SDkkr2Th5axBZra62-1" target="ca6SDkkr2Th5axBZra62-10" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="430" as="sourcePoint" />
+            <mxPoint x="780" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ca6SDkkr2Th5axBZra62-17" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ca6SDkkr2Th5axBZra62-2" target="ca6SDkkr2Th5axBZra62-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="430" as="sourcePoint" />
+            <mxPoint x="780" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
