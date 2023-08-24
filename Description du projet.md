@@ -21,7 +21,7 @@ Avec des tarifs abordables et des options de paiement sécurisées, CoWebTurage 
 - L'utilisateur doit pouvoir réserver un ou plusieurs trajets.
 - Les listes de covoiturage disponibles doivent indiquer l'heure de départ, si un retour est possible et si il y a des détours
 - L'utilisateur qui gère le covoiturage doit pouvoir accepter ou refuser des utilisateurs.
-- Après avoir effectuer le trajet, l'utilisateur doit pouvoir donner un feedback.
+- Après avoir effectué le trajet, l'utilisateur doit pouvoir donner un feedback.
 - L'utilisateur peut choisir un partenaire de covoiturage selon ses style musicaux préfèrés.
 - L'utilisateur doit pouvoir communiquer avec les autres utilisateurs par le biais de messages.
 - L'utilisateur doit pouvoir ajouter et modifier ses moyens de paiements.
