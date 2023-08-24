@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\LandingPage;
+use App\Http\Livewire\HelloWorld;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,4 +22,4 @@ Route::get('/db-version', function () {
     return DB::select("SELECT version()");
 });
 
-Route::get("landing_page", LandingPage::class);
+Route::get("/hello-world", HelloWorld::class);
