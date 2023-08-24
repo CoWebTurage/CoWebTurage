@@ -1,0 +1,11 @@
+services:
+    webapp:
+        build:
+            context: .
+            dockerfile: Dockerfile-server
+        image: cowebturage
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        volumes:
+            - '.:/var/www/html'
