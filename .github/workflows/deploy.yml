@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/deploy
 
 jobs:
   deploy:
@@ -20,3 +21,13 @@ jobs:
           remote_user: ${{ secrets.SSH_USER }}
           remote_key: ${{ secrets.SSH_KEY }}
           remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
+      - name: Run additional commands
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            cd /srv/cowebturage
+            sh deploy.sh
