@@ -14,47 +14,18 @@
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CPT+Serif:400,700">
         <!--<link rel="stylesheet" href="ressources/css/bootstrap.css">-->
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <!-- Page Heading -->
 
-            <!-- Page Header - Non connecté-->
-            <header class="section page-header">
-                <!-- RD Navbar-->
-                <div class="rd-navbar-wrap">
-                    <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
-                        <div class="rd-navbar-main-outer">
-                            <div class="rd-navbar-main">
-                                <!-- RD Navbar Panel-->
-                                <div class="rd-navbar-panel">
-                                    <!-- RD Navbar Toggle-->
-                                    <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
-                                    <!-- RD Navbar Brand-->
-                                    <div class="rd-navbar-brand"><a href="index.html"><img class="brand-logo-light" src="/home_page/images/logo-default1-140x57.png" alt="" width="140" height="57" srcset="/home_page/images/logo-default-280x113.png 2x"/></a></div>
-                                </div>
-                                <div class="rd-navbar-main-element">
-                                    <div class="rd-navbar-nav-wrap">
-                                        <!-- RD Navbar Nav-->
-                                        <ul class="rd-navbar-nav">
-                                            <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Accueil</a>
-                                            </li>
-                                            <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">A propos</a>
-                                            </li>
-                                        </ul><a class="button button-white button-sm" href="#">Se connecter</a>
-                                    </div>
-                                </div><a class="button button-white button-sm" href="#">Se connecter</a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </header>
+        @include('layouts.navigation')
 
-            @if (isset($header))
+        @if (isset($header))
                 <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
