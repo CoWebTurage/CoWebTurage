@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/aboutus', function () {
+    return view('about-us');
+})->name('about_us');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -32,4 +40,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
 });
+
 require __DIR__.'/auth.php';
