@@ -15,10 +15,10 @@
                         </button>
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand"><a href="{{route('home')}}"><img class="brand-logo-light"
-                                                                                             src="/images/logo-default1-140x57.png"
-                                                                                             alt="" width="140"
-                                                                                             height="57"
-                                                                                             srcset="/images/logo-default-280x113.png 2x"/></a>
+                                                                                      src="/images/logo-default1-140x57.png"
+                                                                                      alt="" width="140"
+                                                                                      height="57"
+                                                                                      srcset="/images/logo-default-280x113.png 2x"/></a>
                         </div>
                     </div>
                     <div class="rd-navbar-main-element">
@@ -34,10 +34,10 @@
                             </ul>
                         </div>
                     </div>
-                    @if(isset($user))
+                    @if(($user = Auth::user()) !== null)
                         @csrf
                         <a class="button button-white button-sm"
-                           href="{{ route('profile') }}">{{ $user->firstname." ".$user->lastname }}</a>
+                           href="{{ route('profile.edit') }}">{{ $user->firstname." ".$user->lastname }}</a>
                         <a class="button button-white button-sm"
                            href="{{ route('logout') }}">{{ __('Log Out') }}</a>
 
