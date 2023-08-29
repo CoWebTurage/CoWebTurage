@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en"> 
+<html class="wide wow-animation" lang="en">
   <head>
     <title>Home</title>
     <meta charset="utf-8">
@@ -31,7 +31,7 @@
             <div class="rd-navbar-main-outer">
               <div class="rd-navbar-main">
                 <!-- RD Navbar Panel-->
-                <div class="rd-navbar-panel"> 
+                <div class="rd-navbar-panel">
                   <!-- RD Navbar Toggle-->
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
@@ -60,39 +60,39 @@
           <div class="container">
             <div class="bg-gray-1">
                 <div class="box-booking">
-                  <form class="rd-form rd-mailform booking-form">
+                  <form class="rd-form rd-mailform booking-form" method="POST">
                       <table class="table">
                       <tr>
-                          <td>                    
+                          <td>
                             <div>
                               <p class="booking-title">Départ</p>
                               <div class="form-wrap">
-                                <input class="form-input" id="booking-name" type="text" name="name" data-constraints="@Required">
-                                <label class="form-label" for="booking-name">Lieu</label>
+                                <input class="form-input" id="depart" type="text" name="depart" data-constraints="@Required">
+                                <label class="form-label" for="depart">Lieu</label>
                               </div>
                             </div>
                           </td>
-                          
+
                           <td>
                             <div>
                                 <p class="booking-title">Destination</p>
                                 <div class="form-wrap">
-                                    <input class="form-input" id="booking-phone" type="text" name="phone" data-constraints="@Numeric">
-                                    <label class="form-label" for="booking-phone">Lieu</label>
+                                    <input class="form-input" id="destination" type="text" name="destination" data-constraints="@Required">
+                                    <label class="form-label" for="destination">Lieu</label>
                                 </div>
                             </div>
                           </td>
-                          
+
                           <td>
                             <div>
                                 <p class="booking-title">Date</p>
                                     <div class="form-wrap form-wrap-icon"><span class="icon mdi mdi-calendar-text"></span>
-                                        <input class="form-input" id="booking-date" type="text" name="date" data-constraints="@Required" data-time-picker="date">
+                                        <input class="form-input" id="date" type="text" name="date" data-constraints="@Required" data-time-picker="date">
                                     </div>
                             </div>
                           </td>
-                          
-                          <td>                    
+
+                          <td>
                             <div>
                                 <p class="booking-title">Nb. passagers</p>
                                 <div class="form-wrap">
@@ -106,9 +106,9 @@
                                     <option>6</option>
                                 </select>
                                 </div>
-                            </div> 
+                            </div>
                           </td>
-                          
+
                           <td>
                             <div>
                                 <p class="booking-title">Genre musical</p>
@@ -123,16 +123,17 @@
                                     <option>Variété française</option>
                                 </select>
                                 </div>
-                            </div>      
+                            </div>
                           </td>
-                          
+
                           <td>
                               <div class="form-wrap form-wrap-icon">
                                 <button class="button button-lg button-gray-600" type="submit">Rechercher</button>
                               </div>
                           </td>
-                      </tr>         
-                      </table>             
+
+                      </tr>
+                      </table>
                     </form>
                 </div>
               </div>
@@ -140,9 +141,6 @@
           </div>
         </section>
 
-        
-        
-        
       <!-- Featured Offers-->
       <section class="section section-lg bg-default">
         <div class="container">
@@ -197,7 +195,7 @@
           </div>
         </div>
       </section>
-        
+
         <!--
       <section class="section section-lg bg-gray-1">
         <div class="container">
