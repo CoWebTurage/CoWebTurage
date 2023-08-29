@@ -39,6 +39,12 @@ Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
 });
 
+Route::get('/chat', [ConversationController::class, 'displayConversations'])->middleware('auth')->name('messages.chat');
+
+Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
+Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
+
+require __DIR__ . '/auth.php';
 Route::get("/map", function(){
     return view('map');
 });
