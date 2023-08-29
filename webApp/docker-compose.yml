@@ -25,7 +25,10 @@ services:
             - pgsql
     pgsql:
         image: 'postgres:15'
+        ports:
+            - ${DB_PORT:-5432}:${DB_PORT:-5432}
         environment:
+            PGPORT: '${DB_PORT:-5432}'
             PGPASSWORD: '${DB_PASSWORD:-secret}'
             POSTGRES_DB: '${DB_DATABASE}'
             POSTGRES_USER: '${DB_USERNAME}'

@@ -1,2 +1,12 @@
-docker run --rm --interactive --tty -v $(realpath ./webApp):/app -u $(id -u ${USER}):$(id -g ${USER}) composer:2.5 install --dev
-docker run --rm --interactive --tty -v $(realpath ./webApp):/var/www/html -u $(id -u ${USER}):$(id -g ${USER}) --entrypoint "/bin/bash" php:8.2 -c "cd /var/www/html && cp .env.example .env && php artisan key:generate"
+docker_user=$(id -u "${USER}"):$(id -g "${USER}");
+web_app=$(realpath ./webApp)
+
+docker run --rm --interactive --tty -v "$web_app":/app -u "$docker_user" composer:2.5 install --dev;
+
+cd "$web_app";
+
+cp .env.example .env;
+./vendor/bin/sail up -d;
+./vendor/bin/sail artisan key:generate;
+./vendor/bin/sail npm install;
+./vendor/bin/sail stop;

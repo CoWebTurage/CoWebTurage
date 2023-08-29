@@ -82,3 +82,16 @@ un déploiement automatique sur le serveur de production via GitHub Action.
 - GitHub repositories: https://github.com/CoWebTurage/CoWebTurage
 - Website production: http://146.190.177.74
 - Landing page: http://146.190.177.74/landing_page
+
+## Développement
+
+L'environnement de développement nécessite `sh` et `docker` (WSL pour Windows).
+
+### Setup
+Il suffit d'exécuter `sh setup.sh` à la racine du projet.
+Si l'installation s'est passée correctement un dossier `vendor` et `node_modules` devraient avoir apparu dans le dossier `webApp`.
+
+### Run
+Il suffit d'exécuter `sh run-dev.sh` dans le dossier `webApp`.
+Le frontend est accessible sur `localhost` au port défini par la variable d'environnement `APP_PORT` (`80` par défaut).
+La base de donnée est accessible sur `localhost` au port défini par la variable d'environnement `DB_PORT` (`5432` par défaut).
