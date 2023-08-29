@@ -15,10 +15,10 @@
                         </button>
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand"><a href="action={{route('home')}}"><img class="brand-logo-light"
-                                                                                             src="/home_page/images/logo-default1-140x57.png"
+                                                                                             src="/images/logo-default1-140x57.png"
                                                                                              alt="" width="140"
                                                                                              height="57"
-                                                                                             srcset="/home_page/images/logo-default-280x113.png 2x"/></a>
+                                                                                             srcset="/images/logo-default-280x113.png 2x"/></a>
                         </div>
                     </div>
                     <div class="rd-navbar-main-element">
