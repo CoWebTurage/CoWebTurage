@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\HelloWorld;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/db-version', function () {
-    return DB::select("SELECT version()");
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/hello-world", HelloWorld::class);
+
+Route::get('/landing-page', function () {
+    return redirect('landing_page/index.html');
+});
+require __DIR__.'/auth.php';
