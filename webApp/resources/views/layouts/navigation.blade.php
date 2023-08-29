@@ -14,7 +14,7 @@
                         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span>
                         </button>
                         <!-- RD Navbar Brand-->
-                        <div class="rd-navbar-brand"><a href="action={{route('home')}}"><img class="brand-logo-light"
+                        <div class="rd-navbar-brand"><a href="{{route('home')}}"><img class="brand-logo-light"
                                                                                              src="/images/logo-default1-140x57.png"
                                                                                              alt="" width="140"
                                                                                              height="57"
@@ -26,29 +26,25 @@
                             <!-- RD Navbar Nav-->
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item active"><a class="rd-nav-link"
-                                                                  href="action={{route('home')}}">{{ __('Home') }}</a>
+                                                                  href="{{route('home')}}">{{ __('Home') }}</a>
                                 </li>
                                 <li class="rd-nav-item"><a class="rd-nav-link"
-                                                           href="action={{ route('about_us') }}">{{ __('About Us') }}</a>
+                                                           href="{{ route('about_us') }}">{{ __('About Us') }}</a>
                                 </li>
                             </ul>
-
-                            @if(isset($user))
-                                @csrf
-                                <a class="button button-white button-sm"
-                                   href="action={{ route('profile') }}">{{ $user->firstname." ".$user->lastname }}</a>
-                                <a class="button button-white button-sm"
-                                   href="action={{ route('logout') }}">{{ __('Log Out') }}</a>
-
-                            @else
-                                <a class="button button-white button-sm"
-                                   href="action={{ route('login') }}">{{ __('Log In') }}</a>
-                            @endif
-
-
                         </div>
                     </div>
-                    <a class="button button-white button-sm" href="#">Se connecter</a>
+                    @if(isset($user))
+                        @csrf
+                        <a class="button button-white button-sm"
+                           href="{{ route('profile') }}">{{ $user->firstname." ".$user->lastname }}</a>
+                        <a class="button button-white button-sm"
+                           href="{{ route('logout') }}">{{ __('Log Out') }}</a>
+
+                    @else
+                        <a class="button button-white button-sm"
+                           href="{{ route('login') }}">{{ __('Log In') }}</a>
+                    @endif
                 </div>
             </div>
         </nav>
