@@ -28,9 +28,6 @@ class AuthenticationTest extends TestCase
             '_token' => csrf_token()
         ]);
 
-        print("Login screen response content\n");
-        print($response->getContent());
-
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
@@ -42,6 +39,7 @@ class AuthenticationTest extends TestCase
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => 'wrong-password',
+            '_token' => csrf_token()
         ]);
 
         print($response->getContent());
