@@ -55,4 +55,3 @@ jobs:
       env:
         DB_PASSWORD: postgres
         LOG_CHANNEL: stderr
-        SESSION_DRIVER: array
