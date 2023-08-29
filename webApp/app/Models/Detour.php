@@ -9,6 +9,8 @@ class Detour extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'place',
         'location',

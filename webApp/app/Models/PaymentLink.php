@@ -9,6 +9,8 @@ class PaymentLink extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'url',
     ];

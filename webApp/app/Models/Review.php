@@ -10,6 +10,8 @@ class Review extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'comment',
         'stars',

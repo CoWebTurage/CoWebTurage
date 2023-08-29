@@ -12,6 +12,8 @@ class Trip extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'start_location',
         'end_location',
