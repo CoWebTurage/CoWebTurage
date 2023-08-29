@@ -42,8 +42,6 @@ class AuthenticationTest extends TestCase
             '_token' => csrf_token()
         ]);
 
-        print($response->getContent());
-
         $this->assertGuest();
     }
 }
