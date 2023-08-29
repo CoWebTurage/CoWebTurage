@@ -12,8 +12,6 @@ quotidiens ou les escapades occasionnelles.
 Une des caractéristiques distinctives de CoWebTurage est son approche orientée vers la communauté.
 Les utilisateurs peuvent laisser des commentaires et des évaluations après chaque trajet, aidant ainsi les autres à
 faire des choix informés.
-Avec des tarifs abordables et des options de paiement sécurisées, CoWebTurage rend le covoiturage économique et
-accessible à tous.
 
 ## Besoins Fonctionnels
 
@@ -24,7 +22,7 @@ accessible à tous.
 - L'utilisateur doit pouvoir renseigner les informations sur le véhicule (nombre de places, modèle, ...) et les
   modifier.
 - L'utilisateur qui souhaite utiliser sa voiture pour le covoiturage doit pouvoir indiquer ses horaires, lieu de
-  départs, dates et nombre de places disponibles
+  départ, dates et nombre de places disponibles
 - L'utilisateur doit pouvoir afficher une liste des covoiturages disponibles dans un lieu, pour une destination à une
   date précise et nombre de places disponibles grâce à des filtres
 - L'utilisateur doit pouvoir réserver un ou plusieurs trajets.
@@ -53,7 +51,7 @@ Voici le schéma de l'architecture choisie:
 
 ## Methodologie
 
-Pour ce projet, nous avons décider d'utiliser la méthode SCRUM. Cette méthode est adaptée à la taille du projet et nous
+Pour ce projet, nous avons décidé d'utiliser la méthode SCRUM. Cette méthode est adaptée à la taille du projet et nous
 permettra de livrer des versions intermédiaires du projet. Nous allons donc découper le travail en Sprint, faire des
 daily meeting afin de synchroniser l'équipe au maximum.
 
@@ -63,20 +61,20 @@ Github.
 ## Choix technique
 
 Nous avons choisi de réaliser notre application en laravel 10 PHP 8.3
-La raison de choix est la facilité de création et d'un site web, et d'un système d'authentification.
-Pour la partie frontend, nous avons décider d'utiliser livewire et blade, pour rester dans la stack laravel et PHP,
-évitant au maximer de complexifier le front.
+La raison de ce choix est la facilité de création d'un site web et d'un système d'authentification.
+Pour la partie frontend, nous avons décidé d'utiliser livewire et blade, pour rester dans la stack laravel et PHP,
+évitant au maximum de complexifier le front.
 
 ## Processus de travail
 
-Pour notre projet, nous avons décider de garder un processus le plus simple possible.
-Nous avons mis en place une version simpplifier de gitflow, c'est à dire une architecture feature branch et main. La
-mise en place d'une éventuelle branch develop n'a pas été jugée necessaire, car nous n'avous pas de host pour mettre en
+Pour notre projet, nous avons décidé de garder un processus le plus simple possible.
+Nous avons mis en place une version simplifiée de gitflow, c'est à dire une architecture feature branch et main. La
+mise en place d'une éventuelle branche develop n'a pas été jugée nécessaire, car nous n'avons pas de host pour mettre en
 place une éventuelle preprod.
 
-Pour garentir une appliction toujours fonctionelle, nous avons mis en place un run des tests automatique, via Github
-Action, ainsi que de forcer la review de code par un pair. Pour simplifier nos opétations, nous avons mis aussi en place
-un déployement automatqique sur le serveur de production via GitHub Action.
+Pour garantir une application toujours fonctionelle, nous avons mis en place des tests automatiques, via Github
+Action, ainsi que de forcer la review de code par un pair. Pour simplifier nos opérations, nous avons mis aussi en place
+un déploiement automatique sur le serveur de production via GitHub Action.
 
 ## Liens CoWebTurage
 
