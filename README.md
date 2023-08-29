@@ -80,5 +80,5 @@ un déploiement automatique sur le serveur de production via GitHub Action.
 
 - GitHub project: https://github.com/orgs/CoWebTurage/projects/2
 - GitHub repositories: https://github.com/CoWebTurage/CoWebTurage
-- Website production: http://164.90.190.43
-- Landing page: http://164.90.190.43/landing_page
+- Website production: http://146.190.177.74
+- Landing page: http://146.190.177.74/landing_page
