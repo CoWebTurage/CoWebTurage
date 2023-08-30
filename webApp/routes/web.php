@@ -33,6 +33,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/chat', [ConversationController::class, 'displayConversations'])->name('messages.chat');
+    Route::get('/chat/{user_id}/', [ConversationController::class, 'showMessage']);
+    Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
+    Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
     Route::singleton('/profile', ProfileController::class)->destroyable();
 });
 
@@ -42,10 +46,9 @@ Route::get('/landing-page', function () {
 });
 
 Route::get('/chat', [ConversationController::class, 'displayConversations'])->middleware('auth')->name('messages.chat');
-
+Route::get('/chat/{user_id}/', [ConversationController::class, 'showMessage'])->middleware('auth');
 Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
 Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
-Route::get('/messages/{user_id}/', [ConversationController::class, 'showMessage']);
 
 require __DIR__ . '/auth.php';
 Route::get("/map", function(){

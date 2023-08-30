@@ -17,7 +17,6 @@ class MessageSendRequest extends FormRequest
         return [
             'receiver_id' => ['string', 'max:255'],
             'body' => ['string', 'max:255'],
-            'location' => ['string', 'max:255', 'nullable']
         ];
     }
 }

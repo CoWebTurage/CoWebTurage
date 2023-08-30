@@ -21,7 +21,6 @@
             <input class="form-input" name="body">
             <button class="form-button">{{ __('Send') }}</button>
             <input name="receiver_id" type="hidden" value="{{$partner->id}}">
-            <input name="location" type="hidden" value="/messages/{{ $partner->id }}">
         </form>
     </div>
 @endsection
