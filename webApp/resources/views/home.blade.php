@@ -2,15 +2,16 @@
 
 @section('content')
     <!-- Swiper-->
-    <form class="rd-form rd-mailform booking-form" method="POST">
+    <form class="rd-form rd-mailform booking-form" action="{{route('searchTrips')}}" method="POST">
+        @csrf
         <table class="table">
             <tr>
                 <td>
                     <div>
                         <p class="booking-title">Départ</p>
                         <div class="form-wrap">
-                            <input class="form-input" id="depart" type="text" name="depart">
-                            <label class="form-label" for="depart">Lieu</label>
+                            <input class="form-input" id="start_location" type="text" name="start_location">
+                            <label class="form-label" for="start_location">Lieu</label>
                         </div>
                     </div>
                 </td>
@@ -19,8 +20,8 @@
                     <div>
                         <p class="booking-title">Destination</p>
                         <div class="form-wrap">
-                            <input class="form-input" id="destination" type="text" name="destination">
-                            <label class="form-label" for="destination">Lieu</label>
+                            <input class="form-input" id="end_location" type="text" name="end_location">
+                            <label class="form-label" for="end_location">Lieu</label>
                         </div>
                     </div>
                 </td>
@@ -38,7 +39,7 @@
                     <div>
                         <p class="booking-title">Nb. passagers</p>
                         <div class="form-wrap">
-                            <select data-placeholder="1">
+                            <select data-placeholder="1" id="nbPassenger" name="nbPassenger">
                                 <option label="placeholder"></option>
                                 <option>1</option>
                                 <option>2</option>
@@ -55,13 +56,13 @@
                     <div>
                         <p class="booking-title">Genre musical</p>
                         <div class="form-wrap">
-                            <select data-placeholder="Rock">
+                            <select data-placeholder="Rock" id="genre" name="genre">
                                 <option label="placeholder"></option>
                                 <option>Hip-Hop</option>
                                 <option>Rap</option>
                                 <option>Rock</option>
                                 <option>Reggae</option>
-                                <option>Metal</option>
+                                <option>Métal</option>
                                 <option>Variété française</option>
                             </select>
                         </div>

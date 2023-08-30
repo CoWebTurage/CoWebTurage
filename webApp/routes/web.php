@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/searchTrips', [App\Http\Controllers\SearchController::class, 'searchTrip'])->name('searchTrips');
+Route::get('testDisplay','SearchController@searchTrip');
+
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
+
+//Route::get('/test', [SearchController::class, 'test'])->name('test');
 
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
