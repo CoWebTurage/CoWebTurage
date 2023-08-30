@@ -19,6 +19,7 @@
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -38,11 +39,11 @@
     <main>
         <section class="section section-lg section-main-bunner section-main-bunner-filter text-center">
             <div class="main-bunner-img"
-                 style="background-image: url(&quot;/images/bg-bunner-2.png&quot;); background-size: cover;"></div>
-            <div class="main-bunner-inner">
+                 style="background-image: url(/images/bg-bunner-2.png); background-size: cover;"></div>
+            <div class="main-bunner-inner max-h-full overflow-auto">
                 <div class="container">
-                    <div class="bg-gray-1">
-                        <div class="box-booking">
+                    <div class="bg-beige-200">
+                        <div class="box-booking bg-white/70">
                             @yield('content')
                         </div>
                     </div>
@@ -91,8 +92,8 @@
     </footer>
 </div>
 
-<script src="js/core.min.js"></script>
-<script src="js/script.js"></script>
+<script src="/js/core.min.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>
