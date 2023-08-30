@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Messages;
 
+use App\Models\Message;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -27,5 +28,12 @@ class ConversationController extends Controller
         $users = DB::table('users')->whereIn('id', $users_id)->get();
 
         return view('messages.chat', ['users' => $users]);
+    }
+    public function showMessage($user_id, $user2_id)
+    {
+        $messagesSent = Message::where('sender_id', $user_id)->where('receiver_id', $user2_id);
+        $messagesReceived = Message::where('sender_id', $user2_id)->where('receiver_id', $user_id);
+        $messages = $messagesSent->union($messagesReceived);
+        return view('messages.conversation', ['messages' => $messages->get()]);
     }
 }

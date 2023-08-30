@@ -45,6 +45,7 @@ Route::get('/chat', [ConversationController::class, 'displayConversations'])->mi
 
 Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
 Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
+Route::get('/messages/{user_id}/{user2_id}', [ConversationController::class, 'showMessage']);
 
 require __DIR__ . '/auth.php';
 Route::get("/map", function(){

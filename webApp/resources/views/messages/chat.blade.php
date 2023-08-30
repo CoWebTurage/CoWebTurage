@@ -5,7 +5,8 @@
     </div>
     @foreach( $users as  $user)
         <div>
-            {{ $user->firstname}}
+            Conversation with user : {{ $user->firstname . " " . $user->lastname }}
+            <a href="{{ url('messages/'. Auth::user()->id . '/'.$user->id ) }}">{{ __('View conversation') }}</a>
         </div>
     @endforeach
     @include('messages.new-chat')
