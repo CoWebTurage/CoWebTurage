@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Messages\ConversationController;
+use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 

@@ -17,13 +17,15 @@ class ConversationController extends Controller
             ->orWhere('receiver_id', auth()->id())
             ->get();
 
-        $users = $conversations->map(function ($conversation) {
-            if ($conversation->user_id === auth()->id()) {
-                return $conversation->receiver;
+        $users_id = $conversations->map(function ($conversation) {
+            if ($conversation->sender_id === auth()->id()) {
+                return $conversation->receiver_id;
             }
-            return $conversation->sender;
+            return $conversation->sender_id;
         })->unique();
 
-        return view('messages.chat', compact('users'));
+        $users = DB::table('users')->whereIn('id', $users_id)->get();
+
+        return view('messages.chat', ['users' => $users]);
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Message;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -24,11 +25,10 @@ class MessageController extends Controller
         $message = new Message([
             'content' => $request->get('body'),
             'time' => new \DateTime(),
-            'sender_id' => $request->get('sender'),
-            'receiver_id' => $request->get('receiver'),
+            'sender_id' => Auth::user()->id,
+            'receiver_id' => $request->get('receiver_id'),
         ]);
         $message->save();
-        return Redirect::route('message');
+        return Redirect::route('messages.chat');
     }
-
 }
