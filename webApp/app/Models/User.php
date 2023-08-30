@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function payment_links(): HasMany {
         return $this->hasMany(PaymentLink::class);
     }
+
+    public function cars(): HasMany {
+        return $this->hasMany(Car::class)->without('owner');
+    }
 }

@@ -36,21 +36,20 @@
                     </div>
                     <div>
                         @if(($user = Auth::user()) !== null)
-                            @csrf
                             <table>
                                 <tr>
                                     <td>
                                         <a class="button button-white button-sm"
-                                           href="{{ route('profile.edit') }}">{{ $user->firstname." ".$user->lastname }}</a>
+                                           href="{{ route('profile.show') }}">{{ $user->firstname." ".$user->lastname }}</a>
                                     </td>
                                     <td>
                                         <form method="POST" action="{{ route('logout') }}">
-                                            <x-responsive-nav-link class="button button-white button-sm"
-                                                                   :href="route('logout')"
-                                                                   onclick="event.preventDefault();
+                                            @csrf
+                                            <a class="button button-white button-sm"
+                                               href="{{ route('logout') }}" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                                                 {{ __('Log Out') }}
-                                            </x-responsive-nav-link>
+                                            </a>
                                         </form>
                                     </td>
                                 </tr>
