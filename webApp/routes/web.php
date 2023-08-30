@@ -42,3 +42,7 @@ Route::get('/landing-page', function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get("/map", function(){
+    return view('map');
+});
