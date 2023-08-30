@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Messages;
 
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ConversationController extends Controller
@@ -29,11 +31,21 @@ class ConversationController extends Controller
 
         return view('messages.chat', ['users' => $users]);
     }
-    public function showMessage($user_id, $user2_id)
+
+    public function showMessage($user_id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $messagesSent = Message::where('sender_id', $user_id)->where('receiver_id', $user2_id);
-        $messagesReceived = Message::where('sender_id', $user2_id)->where('receiver_id', $user_id);
+        $currentUser = Auth::user();
+        $messagesSent = Message::where('sender_id', $user_id)->where('receiver_id', $currentUser->id);
+        $messagesReceived = Message::where('sender_id', $currentUser->id)->where('receiver_id', $user_id);
         $messages = $messagesSent->union($messagesReceived);
-        return view('messages.conversation', ['messages' => $messages->get()]);
+
+        return view(
+            'messages.conversation',
+            [
+                'messages' => $messages->get(),
+                'currentUser' => $currentUser,
+                'partner' => User::where('id', $user_id)->first(),
+            ]
+        );
     }
 }

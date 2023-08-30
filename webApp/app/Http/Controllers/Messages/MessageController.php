@@ -29,6 +29,9 @@ class MessageController extends Controller
             'receiver_id' => $request->get('receiver_id'),
         ]);
         $message->save();
+        if (isset($request->location)) {
+            return Redirect::to($request->location);
+        }
         return Redirect::route('messages.chat');
     }
 }
