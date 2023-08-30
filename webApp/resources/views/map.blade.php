@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-    <div id="map" style="width: 100%; height: 800px;"></div>
+    <div id="map" style="width: 100%; height: 700px;"></div>
 
     <div>
         <label for="departureAddress">Adresse de départ:</label>
