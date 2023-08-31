@@ -4,7 +4,7 @@
         {{ __('Select a user to message') }}
         <div>
             <select name="receiver_id">
-                @foreach(getUsersNoChat(Auth::user()->id) as $userToChat)
+                @foreach($usersToChat as $userToChat)
                     <option value="{{ $userToChat->id }}"> {{ $userToChat->firstname . " " . $userToChat->lastname }}</option>
                 @endforeach
             </select>
