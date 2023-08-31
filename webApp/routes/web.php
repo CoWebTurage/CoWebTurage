@@ -46,11 +46,10 @@ Route::get('/landing-page', function () {
 });
 
 Route::get('/chat', [ConversationController::class, 'displayConversations'])->middleware('auth')->name('messages.chat');
-Route::get('/chat/{user_id}/', [ConversationController::class, 'showMessage'])->middleware('auth');
 Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
 Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
 
 require __DIR__ . '/auth.php';
-Route::get("/map", function(){
+Route::get("/map", function () {
     return view('map');
 });
