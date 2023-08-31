@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-xl-left"> {{ $currentUser->firstname . " " . $currentUser->lastname }}</div>
-    <div class="text-xl-right"> {{$partner->firstname . " " .$partner->lastname }}</div>
+    <div class="text-xl text-left"> {{ $currentUser->firstname . " " . $currentUser->lastname }}</div>
+    <div class="text-xl text-right"> {{$partner->firstname . " " .$partner->lastname }}</div>
     @foreach($messages as $message)
         @if($message->sender_id ==$currentUser->id)
             <div class="text-left">
