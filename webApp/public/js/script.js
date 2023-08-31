@@ -1141,20 +1141,20 @@
 			ParallaxScroll.init();
 		}
 
-		// Select 2	
-		if ( plugins.selectFilter.length ) {	
-			for ( var i = 0; i < plugins.selectFilter.length; i++ ) {	
-				var select = $( plugins.selectFilter[ i ] );	
+        // Select 2
+        if ( plugins.selectFilter.length ) {
+            for ( var i = 0; i < plugins.selectFilter.length; i++ ) {
+                var select = $( plugins.selectFilter[ i ] );
 
-				select.select2( {	
-					placeholder:             select.attr( 'data-placeholder' ) || null,	
-					minimumResultsForSearch: select.attr( 'data-minimum-results-search' ) || Infinity,	
-					containerCssClass:       select.attr( 'data-container-class' ) || null,	
-					dropdownCssClass:        select.attr( 'data-dropdown-class' ) || null	
-				} );	
-			}	
-		}
-		```
+                select.select2( {
+                    placeholder:             select.attr( 'data-placeholder' ) || null,
+                    minimumResultsForSearch: select.attr( 'data-minimum-results-search' ) || Infinity,
+                    containerCssClass:       select.attr( 'data-container-class' ) || null,
+                    dropdownCssClass:        select.attr( 'data-dropdown-class' ) || null
+                } );
+            }
+        }
+
 		// Bootstrap Date time picker
 		if ( plugins.bootstrapDateTimePicker.length ) {
 			for ( var i = 0; i < plugins.bootstrapDateTimePicker.length; i++ ) {

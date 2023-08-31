@@ -9,14 +9,12 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ConversationController extends Controller
 {
     public function displayConversations(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $conversations = DB::table('messages')
-            ->where('sender_id', auth()->id())
+        $conversations = Message::where('sender_id', auth()->id())
             ->orWhere('receiver_id', auth()->id())
             ->get();
 
@@ -27,7 +25,7 @@ class ConversationController extends Controller
             return $conversation->sender_id;
         })->unique();
 
-        $users = DB::table('users')->whereIn('id', $users_id)->get();
+        $users = User::whereIn('id', $users_id)->get();
 
         return view('messages.chat', ['users' => $users]);
     }
