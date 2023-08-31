@@ -32,16 +32,17 @@
                 <div class="text-seaweed-600">{{ $user->phone }}</div>
             </div>
             <div class="font-medium text-left text-lg">
-                @if(count($user->genres) != 0)
-                    <h3 class="text-body">Musique</h3>
-                    <ul>
-                        @foreach($user->genres as $genre)
-                            <li class="text-green-800">{{ $genre->name }}</li>
-                        @endforeach
-                    </ul>
-                @endif
+                <h3 class="text-body">Musique</h3>
+                <ul>
+                    @foreach($user->genres->take(5) as $genre)
+                        <li class="text-green-800">{{ $genre->name }}</li>
+                    @endforeach
+                    <li><a href="{{ route('music.show', $user->id) }}">Tout afficher</a></li>
+                </ul>
             </div>
         </div>
-        <a href="{{ route("profile.edit") }}" class="inline-flex items-center px-4 py-2 bg-seaweed-700 border border-transparent rounded-md font-semibold text-xs text-white position-absolute right-1 bottom-1">Edit</a>
+        @if($user->id == Auth::id())
+            <a href="{{ route("profile.edit") }}" class="inline-flex items-center px-4 py-2 bg-seaweed-700 border border-transparent rounded-md font-semibold text-xs text-white position-absolute right-1 bottom-1">Edit</a>
+        @endif
     </div>
 @endsection
