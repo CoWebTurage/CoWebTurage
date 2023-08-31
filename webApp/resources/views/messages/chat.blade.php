@@ -9,5 +9,5 @@
             <a href="{{ url('chat/'.$user->id ) }}">{{ __('View conversation') }}</a>
         </div>
     @endforeach
-    @include('messages.new-chat')
+    @include('messages.new-chat', [ $usersToChat ])
 @endsection

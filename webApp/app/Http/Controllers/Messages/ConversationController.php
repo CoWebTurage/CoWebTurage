@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 
 class ConversationController extends Controller
 {
@@ -27,7 +28,8 @@ class ConversationController extends Controller
 
         $users = User::whereIn('id', $users_id)->get();
 
-        return view('messages.chat', ['users' => $users]);
+        return view('messages.chat', ['users' => $users ,
+            'usersToChat' => $this->getUsersNoChat()]);
     }
 
     public function showMessage($user_id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
@@ -45,5 +47,14 @@ class ConversationController extends Controller
                 'partner' => User::where('id', $user_id)->first(),
             ]
         );
+    }
+     public function getUsersNoChat() : Collection
+    {
+        $id = Auth::user()->id;
+        $senders = Message::select('sender_id as id')->where('receiver_id', $id);
+        $receivers = Message::select('receiver_id as id')->where('sender_id', $id);
+        $ids = $senders->union($receivers)->get('id');
+        $ids->add($id);
+        return User::all();
     }
 }
