@@ -2,12 +2,9 @@
 
 namespace Http\Controllers\Messages;
 
-use App\Http\Controllers\Messages\MessageController;
 use App\Models\User;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 class MessageControllerTest extends TestCase
@@ -16,11 +13,14 @@ class MessageControllerTest extends TestCase
     public function test_non_auth_user_cannot_send_message()
     {
 
+        $this->withoutMiddleware();
         $response = $this->post(route('message.send'), ['receiver_id' => '2', 'body' => "toto"]);
         $response->assertForbidden();
     }
     public function test_auth_user_cannot_send_message_with_missing_data()
     {
+
+        $this->withoutMiddleware();
         $user = User::factory()->create();
         Auth::shouldReceive('user')->once()->andreturn($user);
         $response = $this->post(route('message.send'), ['body' => "toto"]);
@@ -28,6 +28,8 @@ class MessageControllerTest extends TestCase
     }
     public function test_auth_user_cannot_send_message_to_non_existing_user()
     {
+
+        $this->withoutMiddleware();
         $fakeId = -2;
         $user = User::factory()->create();
         Auth::shouldReceive('user')->once()->andreturn($user);
@@ -37,6 +39,8 @@ class MessageControllerTest extends TestCase
     }
     public function test_auth_user_can_send_message_to_existing_user()
     {
+
+        $this->withoutMiddleware();
         $user = User::factory()->create();
         $user2 = User::factory()->create();
         Auth::shouldReceive('user')->once()->andreturn($user);
