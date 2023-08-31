@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Messages\ConversationController;
+use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/chat', [ConversationController::class, 'displayConversations'])->name('messages.chat');
+    Route::get('/chat/{user_id}/', [ConversationController::class, 'showMessage']);
+    Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
+    Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
     Route::singleton('/profile', ProfileController::class)->destroyable();
 });
 
@@ -39,6 +45,6 @@ Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
 });
 
-Route::get("/map", function(){
+Route::get("/map", function () {
     return view('map');
 });
