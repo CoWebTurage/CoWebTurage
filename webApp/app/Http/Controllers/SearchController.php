@@ -30,10 +30,7 @@ class SearchController extends Controller
                 return $trip->car->seats >= $trip->passengers_count;
             });
 
-
-        return view('test', ['tripInfos' => $tripInfos]);
-        
-
+        return view('search', ['tripInfos' => $tripInfos]);
     }
 }
 

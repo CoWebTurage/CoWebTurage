@@ -38,11 +38,16 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/searchTrips', [App\Http\Controllers\SearchController::class, 'searchTrip'])->name('searchTrips');
-Route::get('testDisplay','SearchController@searchTrip');
 
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
+
+Route::get('/searchDetails', function (){
+
+    return view('searchDetails');
+
+})->name('searchDetails');
 
 //Route::get('/test', [SearchController::class, 'test'])->name('test');
 
