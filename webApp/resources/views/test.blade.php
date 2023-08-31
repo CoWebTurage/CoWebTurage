@@ -1,8 +1,12 @@
+@extends('layouts.app')
 
-<?php
+@section('content')
 
-var_dump($tripInfos);
+    @foreach($tripInfos as $t)
 
+        <p>
+            {{$t}}
+        </p>
+    @endforeach
 
-
-?>
+@endsection

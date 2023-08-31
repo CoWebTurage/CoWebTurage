@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Swiper-->
-    <form class="rd-form rd-mailform booking-form" action="{{route('searchTrips')}}" method="POST">
+    <form class="booking-form" action="{{route('searchTrips')}}" method="POST">
         @csrf
         <table class="table">
             <tr>
