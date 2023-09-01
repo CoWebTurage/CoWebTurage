@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Playlist;
+use App\Models\PaymentLink;
 use App\Models\User;
 use App\Rules\URLDomainRule;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
-class EditPlaylist extends Component
+/*
+ * TODO: Factorize with EditPlaylist
+ */
+class EditPaymentLink extends Component
 {
     public User $user;
 
@@ -19,7 +22,7 @@ class EditPlaylist extends Component
 
     public function mount(User $user) {
         $this->user = $user;
-        $this->urls = collect($user->playlists);
+        $this->urls = collect($user->payment_links);
     }
 
     public function render()
@@ -32,7 +35,7 @@ class EditPlaylist extends Component
     public function rules()
     {
         return [
-            'new_url' => ['url', new URLDomainRule(['www.youtube.com', 'youtube.com', 'youtu.be', 'soundcloud.com', 'spotify.com', 'open.spotify.com'])]
+            'new_url' => ['url', new URLDomainRule(['www.paypal.com', 'paypal.com', 'paypal.me'])]
         ];
     }
 
@@ -65,7 +68,7 @@ class EditPlaylist extends Component
     public function add() {
         $this->validateOnly('new_url');
 
-        $p = new Playlist();
+        $p = new PaymentLink();
         $p->url = $this->new_url;
 
         $this->urls->add($p);
@@ -74,23 +77,23 @@ class EditPlaylist extends Component
 
     public function confirm() {
 
-        $old = $this->user->playlists;
+        $old = $this->user->payment_links;
         $new = $this->urls->map(function ($p) {
-            return new Playlist($p);
+            return new PaymentLink($p);
         });
 
         $removed = $old->diff($new);
 
-        $removed->each(function (Playlist $p) {
+        $removed->each(function (PaymentLink $p) {
            $p->delete();
         });
 
-        $this->user->playlists()->saveMany($new);
+        $this->user->payment_links()->saveMany($new);
 
-        return redirect()->route('music.show', $this->user->id);
+        return redirect()->route('profile.show', $this->user->id);
     }
 
     public function cancel() {
-        return redirect()->route('music.show', $this->user->id);
+        return redirect()->route('profile.show', $this->user->id);
     }
 }

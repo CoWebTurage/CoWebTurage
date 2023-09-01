@@ -5,8 +5,15 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class PlaylistURLRule implements ValidationRule
+class URLDomainRule implements ValidationRule
 {
+    private array $domains;
+
+    public function __construct(array $domains)
+    {
+        $this->domains = $domains;
+    }
+
     /**
      * Run the validation rule.
      *
@@ -21,7 +28,7 @@ class PlaylistURLRule implements ValidationRule
             return;
         }
 
-        if(!in_array($url['host'], ['www.youtube.com', 'youtube.com', 'youtu.be', 'soundcloud.com', 'spotify.com', 'open.spotify.com'])){
+        if(!in_array($url['host'], $this->domains)){
             $fail("Website not supported");
         }
     }
