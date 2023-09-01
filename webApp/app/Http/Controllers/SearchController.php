@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -19,17 +20,25 @@ class SearchController extends Controller
 {
     public function searchTrip(Request $request)
     {
+        // Get the start and end locations from the request
+        $startLocation = $request->input('start_location');
+        $endLocation = $request->input('end_location');
 
+        // Perform a partial matching search using LIKE
         $tripInfos = Trip::with(["car", "passengers", "driver" => function ($query) use ($request) {
             $query->whereHas('genres', function ($subquery) use ($request) {
                 $subquery->where('name', '=', $request->genre);
             });
 
-        }])->withCount('passengers')->where([
-            ['start_location', '=', $request->start_location],
-            ['end_location', '=', $request->end_location],
-        ])
-            ->get()->filter(function ($trip) use ($request) {
+        }])
+            ->withCount('passengers')
+            ->where(function ($query) use ($startLocation, $endLocation) {
+                // Perform partial matching on start and end locations
+                $query->where('start_location', 'like', '%' . $startLocation . '%')
+                    ->orWhere('end_location', 'like', '%' . $endLocation . '%');
+            })
+            ->get()
+            ->filter(function ($trip) use ($request) {
                 return $trip->car->seats >= $trip->passengers_count;
             });
 
@@ -57,6 +66,18 @@ class SearchController extends Controller
             ->get(['name']);
 
         return view('searchDetails', ['selectedTrip' => $selectedTrip, 'driver' => $driver, 'rating' => $rating, 'genre' => $genre]);
+    }
+
+    public function showMap(Request $request){
+        $departureLocation = $request->query('departure');
+        $arrivalLocation = $request->query('arrival'); // Get the arrival location
+
+        // You can also perform any necessary logic or validation here
+
+        return view('showMap', [
+            'departureLocation' => $departureLocation,
+            'arrivalLocation' => $arrivalLocation, // Pass both departure and arrival locations
+        ]);
     }
 }
 

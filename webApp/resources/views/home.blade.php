@@ -2,8 +2,8 @@
 
 @section('content')
     <!-- Swiper-->
-    <form class="booking-form" action="{{route('searchTrips')}}" method="POST">
-        @csrf
+    <form action={{route('searchTrips')}} method="GET">
+    @csrf
         <table class="table">
             <tr>
                 <td>

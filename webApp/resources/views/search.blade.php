@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div>
+    <div style="max-height: 400px; overflow-y: auto;">
         <table class="table">
             <h2 style="color: #0d0a0a">31.08.2023</h2>
             <br>
@@ -25,12 +24,6 @@
                     <td><a class="button" href="{{ route('searchDetails', ['id' => $t->id]) }}"> Commander </a></td>
                 </tr>
             @endforeach
-
         </table>
     </div>
-
 @endsection
-
-
-
-
