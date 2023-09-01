@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\Messages\ConversationController;
 use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
@@ -53,7 +54,10 @@ Route::middleware('auth')->group(function () {
         Route::singleton('genre', GenreUserController::class)->except('show');
         Route::get('/playlist/edit', EditPlaylist::class)->name('playlist.edit');
         Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
+        Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     });
+
+    Route::resource('car', CarController::class)->except(['index', 'show']);
 });
 
 
