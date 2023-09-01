@@ -4,6 +4,7 @@ use App\Http\Controllers\Messages\ConversationController;
 use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TripController;
 use App\Http\Livewire\EditPaymentLink;
 use App\Http\Livewire\EditPlaylist;
 use App\Models\User;
@@ -56,6 +57,11 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::get('/create-journey', function () {
+    return view('create-journey');
+})->name('create-journey');
+
+Route::post('/createTrip', [TripController::class, 'createTrip'])->name('createTrip');
 
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
