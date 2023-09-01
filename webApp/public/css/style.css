@@ -3611,19 +3611,19 @@ textarea.form-input {
 
 .form-lg .form-input,
 .form-lg .form-label,
-.form-lg .select2-container .select2-choice {
+.form-lg {
 	font-size: 16px;
 }
 
 .form-lg .form-input,
-.form-lg .select2-container .select2-choice {
+.form-lg {
 	font-size: 16px;
 	padding-top: 16px;
 	padding-bottom: 16px;
 }
 
 .form-lg .form-input,
-.form-lg .select2-container .select2-choice {
+.form-lg {
 	min-height: 58px;
 }
 
@@ -13043,12 +13043,6 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 .has-error .select2-container {
 	outline: 1px dashed red;
-}
-
-@media (min-width: 768px) {
-	.select2-container {
-		max-width: 66px;
-	}
 }
 
 .select2-dropdown {

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Messages\ConversationController;
+use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\EditPlaylist;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +41,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
     Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
     Route::singleton('/profile', ProfileController::class)->destroyable();
+
+    Route::prefix('/profile/{user}')->group(function () {
+        Route::get('/music', function (User $user) {
+            return view('profile.music.show', [
+                'user' => $user,
+            ]);
+        })->name('music.show');
+
+        Route::singleton('genre', GenreUserController::class)->except('show');
+        Route::get('/playlist/edit', EditPlaylist::class)->name('playlist.edit');
+    });
 });
 
 
