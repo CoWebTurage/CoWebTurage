@@ -5,6 +5,7 @@ use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Review\ReviewController;
+use App\Http\Livewire\EditPaymentLink;
 use App\Http\Livewire\EditPlaylist;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
         Route::singleton('genre', GenreUserController::class)->except('show');
         Route::get('/playlist/edit', EditPlaylist::class)->name('playlist.edit');
+        Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
     });
 
     Route::get('/review/{user_id}/', [ReviewController::class, 'view']);
