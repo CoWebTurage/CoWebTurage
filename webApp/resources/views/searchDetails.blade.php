@@ -31,7 +31,7 @@
             </div>
             <div class="location">
                 <p><strong>Évaluation:</strong></p>
-                <p class="normal-text">{{ $rating }}</p>
+                <p class="normal-text">{{ $rating }}<img src="/images/starIcon.png"></p>
             </div>
             <div class="location">
                 <p><strong>Préférence musicale:</strong></p>
@@ -45,7 +45,16 @@
     </div>
 
     <div class="button-container">
-        <a class="back-button button" href="javascript:history.back()">Retour</a>
-        <a class="map-button button" href="{{ route('showMap', ['departure' => $selectedTrip->start_location, 'arrival' => $selectedTrip->end_location]) }}">Voir sur la carte</a>
+        <table>
+            <tr>
+                <td>
+                    <a class="back-button button" href="javascript:history.back()">Retour</a>
+                </td>
+
+                <td>
+                    <a class="map-button button" href="{{ route('showMap', ['departure' => $selectedTrip->start_location, 'arrival' => $selectedTrip->end_location]) }}">Voir sur la carte</a>
+                </td>
+            </tr>
+        </table>
     </div>
 @endsection

@@ -34,8 +34,9 @@ class SearchController extends Controller
             ->withCount('passengers')
             ->where(function ($query) use ($startLocation, $endLocation) {
                 // Perform partial matching on start and end locations
-                $query->where('start_location', 'like', '%' . $startLocation . '%')
-                    ->orWhere('end_location', 'like', '%' . $endLocation . '%');
+                $query->where('end_location', 'like', '%' . $endLocation . '%');
+                if (isset($startLocation))$query->where('start_location', 'like', '%' . $startLocation . '%');
+                    //->orWhere('end_location', 'like', '%' . $endLocation . '%');
             })
             ->get()
             ->filter(function ($trip) use ($request) {
@@ -54,7 +55,7 @@ class SearchController extends Controller
         $driver = User::findOrFail($selectedTrip->user_id);
 
         // Compute user rating based on reviews
-        $rating = Review::all()->where('reviewed_id','=',$selectedTrip->user_id)->avg('stars');
+        $rating = Review::all()->where('reviewed_id', '=', $selectedTrip->user_id)->avg('stars');
 
 
         //$genre = Genre::all()->where('user_id', '=', $selectedTrip->user_id)->get('name');
@@ -68,7 +69,8 @@ class SearchController extends Controller
         return view('searchDetails', ['selectedTrip' => $selectedTrip, 'driver' => $driver, 'rating' => $rating, 'genre' => $genre]);
     }
 
-    public function showMap(Request $request){
+    public function showMap(Request $request)
+    {
         $departureLocation = $request->query('departure');
         $arrivalLocation = $request->query('arrival'); // Get the arrival location
 

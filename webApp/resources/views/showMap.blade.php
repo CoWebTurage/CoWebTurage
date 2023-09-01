@@ -77,8 +77,23 @@
         }
     </script>
 
-    <button id="back-button" onclick="goBack()">Retour à la course</button>
-    <button id="reserver" class="back-button">Réserver la course</button>
+    <div class="button-container">
+        <table>
+            <tr>
+                <td>
+                    <a class="back-button button" href="javascript:history.back()">Retour à la course</a>
+                </td>
+
+                <td>
+                    <a class="back-button button" href="javascript:history.back()">Réserver la course</a>
+                </td>
+
+                <td>
+                    <a class="back-button button" href="javascript:history.back()">Continuer</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <script>
         function goBack() {

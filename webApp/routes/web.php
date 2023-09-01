@@ -37,9 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/searchTrips', [SearchController::class, 'searchTrip'])->name('searchTrips');
+Route::post('/searchTrips', [SearchController::class, 'searchTrip'])->name('searchTrips');
 //Route::get('/searchDetails/{id}', [SearchController::class, 'searchDetails'])->name('searchDetails');
 Route::get('/searchDetails', [SearchController::class, 'searchDetails'])->name('searchDetails');
+
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
+
 
 Route::get('/search', function () {
     return view('search');

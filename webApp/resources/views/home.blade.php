@@ -2,25 +2,25 @@
 
 @section('content')
     <!-- Swiper-->
-    <form action={{route('searchTrips')}} method="GET">
+    <form action={{route('searchTrips')}} method="POST">
     @csrf
         <table class="table">
             <tr>
                 <td>
                     <div>
-                        <p class="booking-title">Départ</p>
+                        <p class="booking-title">Départ (optionnel)</p>
                         <div class="form-wrap">
                             <input class="form-input" id="start_location" type="text" name="start_location">
                             <label class="form-label" for="start_location">Lieu</label>
                         </div>
-                    </div>
+                    </di
                 </td>
 
                 <td>
                     <div>
                         <p class="booking-title">Destination</p>
                         <div class="form-wrap">
-                            <input class="form-input" id="end_location" type="text" name="end_location">
+                            <input class="form-input" id="end_location" type="text" name="end_location" required>
                             <label class="form-label" for="end_location">Lieu</label>
                         </div>
                     </div>
@@ -29,8 +29,8 @@
                 <td>
                     <div>
                         <p class="booking-title">Date</p>
-                        <div class="form-wrap form-wrap-icon"><span class="icon mdi mdi-calendar-text"></span>
-                            <input class="form-input" id="date" type="text" name="date" data-time-picker="date">
+                        <div class="form-wrap form-wrap-icon">
+                            <input class="form-input" id="date" type="text" name="date" data-time-picker="date" required>
                         </div>
                     </div>
                 </td>
@@ -39,7 +39,7 @@
                     <div>
                         <p class="booking-title">Nb. passagers</p>
                         <div class="form-wrap">
-                            <select data-placeholder="1" id="nbPassenger" name="nbPassenger">
+                            <select data-placeholder="1" id="nbPassenger" name="nbPassenger" required>
                                 <option label="placeholder"></option>
                                 <option>1</option>
                                 <option>2</option>
@@ -56,7 +56,7 @@
                     <div>
                         <p class="booking-title">Genre musical</p>
                         <div class="form-wrap">
-                            <select data-placeholder="Rock" id="genre" name="genre">
+                            <select data-placeholder="Rock" id="genre" name="genre" required>
                                 <option label="placeholder"></option>
                                 <option>Hip-Hop</option>
                                 <option>Rap</option>
