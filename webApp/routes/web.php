@@ -56,9 +56,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/playlist/edit', EditPlaylist::class)->name('playlist.edit');
     });
 
-    Route::get('/review/{user_id]/', [ReviewController::class, 'view']);
-    Route::get('/review/', [ReviewController::class, 'viewNewReviewsPossible']);
-    Route::post('/review/', [ReviewController::class, 'createReview']);
+    Route::get('/review/{user_id}/', [ReviewController::class, 'view']);
+    Route::get('/review/', [ReviewController::class, 'viewNewReviewsPossible'])->name('review.new');
+    Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
+    Route::put('/review/{review_id}/', [ReviewController::class, 'edit']);
 
 });
 

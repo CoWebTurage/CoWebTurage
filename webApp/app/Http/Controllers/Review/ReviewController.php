@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Review;
 
-use App\Models\Passenger;
 use App\Models\Review;
-use App\Models\Trip;
 use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
     public function view($user_id)
     {
-        $reviews = Review::where('reviewed', $user_id)->all();
+        $reviews = Review::where('reviewed_id', $user_id)->get();
         return view('review.review-display', ['user' => User::find($user_id), 'reviews' => $reviews]);
     }
 
@@ -23,10 +22,10 @@ class ReviewController extends Controller
     {
         /** @var User $currentUser */
         $currentUser = Auth::user();
-        $passenger = Trip::where('driver', $currentUser->id)->get('passenger');
-        $trips = Passenger::where('user_id', $currentUser->id)->get('trip_id');
-        $passenger->union(Trip::whereIn($trips)->get("passenger"));
-        $newUsers = User::all()->except($passenger->get());
+        $userAlreadyReview = Review::where('reviewer_id', $currentUser->id)->pluck('reviewed_id');
+        $newUsers = User::all()
+            ->except($userAlreadyReview->toArray())
+            ->except($currentUser->id);
         return view('review.review-new', ['newUsers' => $newUsers]);
     }
 
@@ -49,9 +48,23 @@ class ReviewController extends Controller
         }
         $review = new Review([
             'comment' => $request->get('comment'),
-            'stars' => $request->get('star'),
+            'stars' => $request->get('stars'),
             'reviewer_id' => $currentUser->id,
             'reviewed_id' => $request->get('reviewed_id'),
         ]);
+        $review->save();
+        return Redirect::to('review/' . $request->get('reviewed_id'));
+    }
+
+    public function edit(Request $request, $review_id)
+    {
+        $review = Review::find($review_id);
+        if($review->reviewer_id != Auth::user()->id) {
+            abort(403);
+        }
+        $review->comment = $request->get('comment');
+        $review->stars = $request->get('stars');
+        $review->save();
+        return Redirect::to('review/' . $review->reviewed_id);
     }
 }
