@@ -57,11 +57,12 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/create-journey', function () {
-    return view('create-journey');
-})->name('create-journey');
+Route::get('/create-journey', [TripController::class, 'listVehicles'])->name('listVehicles');
+Route::get("/successAddTrip", function () {
+    return view('create_trip.add-success');
+});
 
-Route::post('/createTrip', [TripController::class, 'createTrip'])->name('createTrip');
+Route::post('/create-trip', [TripController::class, 'createTrip'])->name('create-trip');
 
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
