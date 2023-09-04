@@ -5,6 +5,7 @@ use App\Http\Controllers\Messages\ConversationController;
 use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\Review\ReviewController;
 use App\Http\Livewire\EditPaymentLink;
 use App\Http\Livewire\EditPlaylist;
@@ -25,10 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/home', [TripController::class, 'home'])->name('home');
 
 Route::get('/about_us', function () {
     return view('about-us');
@@ -69,6 +67,12 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::get('/create-journey', [TripController::class, 'listVehicles'])->name('listVehicles');
+Route::get("/successAddTrip", function () {
+    return view('create_trip.add-success');
+});
+
+Route::post('/create-trip', [TripController::class, 'createTrip'])->name('create-trip');
 
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
