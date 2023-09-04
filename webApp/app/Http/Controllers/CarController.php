@@ -16,6 +16,7 @@ class CarController extends Controller
     {
         return view('car.index', [
             'cars' => $user->cars,
+            'user_id' => $user->id,
         ]);
     }
 

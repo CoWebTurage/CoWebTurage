@@ -53,7 +53,7 @@ class ReviewController extends Controller
             'reviewed_id' => $request->get('reviewed_id'),
         ]);
         $review->save();
-        return Redirect::to('review/' . $request->get('reviewed_id'));
+        return Redirect::route('review.view', $request->get('reviewed_id'));
     }
 
     public function edit(Request $request, $review_id)
@@ -65,6 +65,6 @@ class ReviewController extends Controller
         $review->comment = $request->get('comment');
         $review->stars = $request->get('stars');
         $review->save();
-        return Redirect::to('review/' . $review->reviewed_id);
+        return Redirect::route('review.view',  $review->reviewed_id);
     }
 }

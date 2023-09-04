@@ -17,19 +17,23 @@
                         <td class="p-2">{{ $car->color }}</td>
                         <td class="p-2">{{ $car->seats }}</td>
                         <td class="p-2 flex justify-end space-x-1">
-                            <a href="{{ route("car.edit", $car->id) }}" class="primary-button text-center p-2 aspect-square"><i class="fas fa-pen"></i></a>
+                            @if(Auth::user() == $user_id)
+                                <a href="{{ route("car.edit", $car->id) }}"
+                                   class="primary-button text-center p-2 aspect-square"><i class="fas fa-pen"></i></a>
 
-                            <form method="post" action="{{ route("car.destroy", $car->id) }}">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="primary-button bg-red-600 p-2 aspect-square"><i class="fas fa-trash"></i></button>
-                            </form>
+                                <form method="post" action="{{ route("car.destroy", $car->id) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="primary-button bg-red-600 p-2 aspect-square"><i
+                                            class="fas fa-trash"></i></button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
                 @if($cars->count() == 0)
                     <tr>
-                        <td colspan="5" class="text-center">{{ __("You currently have no car.") }}</td>
+                        <td colspan="5" class="text-center">{{ __("Currently no cars have been registered.") }}</td>
                     </tr>
                 @else
                     <tr class="h-3"></tr>
@@ -37,7 +41,9 @@
             </table>
         </div>
         <div>
-            <a href="{{ route("car.create") }}" class="primary-button p-2">{{ __("Add") }}</a>
+            @if(Auth::user()->id == $user_id)
+                <a href="{{ route("car.create") }}" class="primary-button p-2">{{ __("Add") }}</a>
+            @endif
         </div>
     </div>
 @endsection

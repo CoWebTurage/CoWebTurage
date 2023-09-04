@@ -57,13 +57,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
         Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     });
-
+    Route::get('/profile/{user_id}/', [ProfileController::class, 'display']);
     Route::resource('car', CarController::class)->except(['index', 'show']);
 
-    Route::get('/review/{user_id}/', [ReviewController::class, 'view']);
+    Route::get('/profile/{user_id}/review/', [ReviewController::class, 'view'])->name('review.view');
     Route::get('/review/', [ReviewController::class, 'viewNewReviewsPossible'])->name('review.new');
     Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
-    Route::put('/review/{review_id}/', [ReviewController::class, 'edit']);
+    Route::put('/review/{review_id}/', [ReviewController::class, 'edit'])->name('review.edit');
 
 });
 

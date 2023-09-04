@@ -9,7 +9,7 @@
         {{ __('Rating : ') . $review->stars . '*'}}
     </div>
     @if($review->reviewer_id == Auth::user()->id)
-        <form method="POST" action="{{ url('/review/' . $review->id) }}">
+        <form method="POST" action="{{ route('review.edit', $review->id) }}">
             @csrf
             @method('put')
             <div>
