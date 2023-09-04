@@ -24,10 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/home', [TripController::class, 'home'])->name('home');
 
 Route::get('/about_us', function () {
     return view('about-us');

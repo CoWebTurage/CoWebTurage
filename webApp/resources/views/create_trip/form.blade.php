@@ -7,11 +7,11 @@
                 <tr>
                     <td>
                         <div>
-                            <p class="booking-title">{{__("Départ")}}</p>
+                            <p class="booking-title">{{__("Departure")}}</p>
                             <div class="form-wrap">
                                 <input class="form-input" id="start_location" type="text" name="start_location"
                                        required>
-                                <label class="form-label" for="start_location">{{__("Lieu")}}</label>
+                                <label class="form-label" for="start_location">{{__("Location")}}</label>
                             </div>
                         </div>
                     </td>
@@ -21,7 +21,7 @@
                             <p class="booking-title">{{__("Destination")}}</p>
                             <div class="form-wrap">
                                 <input class="form-input" id="end_location" type="text" name="end_location" required>
-                                <label class="form-label" for="end_location">{{__("Lieu")}}</label>
+                                <label class="form-label" for="end_location">{{__("Location")}}</label>
                             </div>
                         </div>
                     </td>
@@ -38,7 +38,7 @@
 
                     <td>
                         <div>
-                            <p class="booking-title">{{__("Heure départ")}}</p>
+                            <p class="booking-title">{{__("Departure Time")}}</p>
                             <div class="form-wrap form-wrap-icon">
                                 <input class="form-input" id="start_time" type="time" name="start_time"
                                        data-time-picker="time" required>
@@ -48,7 +48,7 @@
 
                     <td>
                         <div>
-                            <p class="booking-title">{{__("Heure arrivée")}}</p>
+                            <p class="booking-title">{{__("Arrival Time")}}</p>
                             <div class="form-wrap form-wrap-icon">
                                 <input class="form-input" id="end_time" type="time" name="end_time"
                                        data-time-picker="time" required>
@@ -61,39 +61,7 @@
                 <tr>
                     <td>
                         <div>
-                            <p class="booking-title">{{__("Nb. passagers")}}</p>
-                            <div>
-                                <select data-placeholder="1" id="nbPassenger" name="nbPassenger" required>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </div>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div>
-                            <p class="booking-title">{{__("Genre musical")}}</p>
-                            <div class="form-wrap">
-                                <select data-placeholder="Rock" id="genre" name="genre" required>
-                                    <option>Hip-Hop</option>
-                                    <option>Rap</option>
-                                    <option>Rock</option>
-                                    <option>Reggae</option>
-                                    <option>{{__("Métal")}}</option>
-                                    <option>{{__("Variété française")}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div>
-                            <p class="booking-title">{{__("Véhicule")}}</p>
+                            <p class="booking-title">{{__("Vehicle")}}</p>
                             <div class="form-wrap">
                                 <select data-placeholder="Sélectionner votre véhicule" id="vehicle" name="vehicle"
                                         required>
@@ -108,10 +76,10 @@
 
                     <td>
                         <div>
-                            <p class="booking-title">{{__("Prix")}}</p>
+                            <p class="booking-title">{{__("Price")}}</p>
                             <div class="form-wrap">
                                 <input class="form-input" id="price" type="number" name="price" required>
-                                <label class="form-label" for="price">{{__("Prix")}}</label>
+                                <label class="form-label" for="price">{{__("Price")}}</label>
                             </div>
                         </div>
                     </td>
@@ -119,7 +87,7 @@
             </table>
 
             <div class="form-wrap form-wrap-icon">
-                <button class="button button-lg button-gray-600" type="submit">{{__("Créer trajet")}}</button>
+                <button class="button button-lg button-gray-600" type="submit">{{__("Create Trip")}}</button>
             </div>
         </form>
 
@@ -127,7 +95,7 @@
 
     @guest
         <script>
-            window.alert({{__("Connectez-vous à votre compte pour effectuer cette opération")}});
+            window.alert({{__("Log in to your account to perform this operation")}});
             window.location = '/login';
         </script>
     @endguest
