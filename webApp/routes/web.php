@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\Messages\ConversationController;
 use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\Review\ReviewController;
 use App\Http\Livewire\EditPaymentLink;
 use App\Http\Livewire\EditPlaylist;
 use App\Models\User;
@@ -37,8 +39,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ConversationController::class, 'displayConversations'])->name('messages.chat');
     Route::get('/chat/{user_id}/', [ConversationController::class, 'showMessage']);
+
     Route::get('/messages', [MessageController::class, 'view'])->name('message.display');
     Route::post('/messages', [MessageController::class, 'send'])->name('message.send');
+
     Route::singleton('/profile', ProfileController::class)->destroyable();
 
     Route::prefix('/profile/{user}')->group(function () {
@@ -51,7 +55,16 @@ Route::middleware('auth')->group(function () {
         Route::singleton('genre', GenreUserController::class)->except('show');
         Route::get('/playlist/edit', EditPlaylist::class)->name('playlist.edit');
         Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
+        Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     });
+
+    Route::resource('car', CarController::class)->except(['index', 'show']);
+
+    Route::get('/review/{user_id}/', [ReviewController::class, 'view']);
+    Route::get('/review/', [ReviewController::class, 'viewNewReviewsPossible'])->name('review.new');
+    Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
+    Route::put('/review/{review_id}/', [ReviewController::class, 'edit']);
+
 });
 
 Route::get('/create-journey', [TripController::class, 'listVehicles'])->name('listVehicles');
