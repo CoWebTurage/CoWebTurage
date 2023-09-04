@@ -24,17 +24,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
 });
 Route::get('/home', [TripController::class, 'home'])->name('home');
-
-Route::get('/about_us', function () {
-    return view('about-us');
-})->name('about_us');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ConversationController::class, 'displayConversations'])->name('messages.chat');
@@ -76,7 +68,7 @@ Route::post('/create-trip', [TripController::class, 'createTrip'])->name('create
 
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
-});
+})->name('landing_page');
 
 Route::get("/map", function () {
     return view('map');

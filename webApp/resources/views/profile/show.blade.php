@@ -15,7 +15,7 @@
         </div>
         <div class="">
             <div class="font-medium text-left text-lg">
-                <h3 class="text-body">{{ __("My infos") }}</h3>
+                <h3 class="text-body">{{ __("User information") }}</h3>
                 <div>{{ __("Lastname") }}</div>
                 <div class="text-seaweed-600">{{ $user->lastname }}</div>
                 <div>{{ __("Firstname") }}</div>
@@ -49,6 +49,10 @@
                     @endforeach
                     <li><a href="{{ route('music.show', $user->id) }}" class="primary-button p-2">{{ __("Show all") }}</a></li>
                 </ul>
+            </div>
+            <div>
+                <div class="font-medium text-left text-lg"> {{ __('Stars rating : ') . $ratings . '★'}}</div>
+                <a href="{{ route('review.view', $user->id) }}">{{ __('View reviews') }}</a>
             </div>
         </div>
         @if($user->id == Auth::id())
