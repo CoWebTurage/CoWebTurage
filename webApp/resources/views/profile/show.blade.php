@@ -2,16 +2,15 @@
 @section('content')
     <div class="py-12 grid grid-cols-3">
         <div class="">
-            <div>PHOTO</div>
+            <div class="w-20 aspect-square">PHOTO</div>
             <div class="font-medium text-left text-lg">
-                @if(count($user->cars) != 0)
-                    <h3 class="text-body">{{ __("Vehicles") }}</h3>
-                    <ul>
-                        @foreach($user->cars as $car)
-                            <li>{{ $car->model }}</li>
-                        @endforeach
-                    </ul>
-                @endif
+                <h3 class="text-body">{{ __("Vehicles") }}</h3>
+                <ul class="space-y-1">
+                    @foreach($user->cars->take(5) as $car)
+                        <li class="text-seaweed-600">{{ $car->model }}</li>
+                    @endforeach
+                    <li><a href="{{ route('car.index', $user->id) }}" class="primary-button p-2">{{ __("Show all") }}</a></li>
+                </ul>
             </div>
         </div>
         <div class="">
@@ -24,7 +23,7 @@
             </div>
             <div class="font-medium text-left text-lg">
                 <h3 class="text-body">{{ __("Payment links") }}</h3>
-                <ul>
+                <ul class="space-y-1">
                     @foreach($user->payment_links as $payment)
                         <li><a href="{{ $payment->url }}">{{ $payment->url }}</a></li>
                     @endforeach
@@ -44,9 +43,9 @@
             </div>
             <div class="font-medium text-left text-lg">
                 <h3 class="text-body">{{ __("Music") }}</h3>
-                <ul>
+                <ul class="space-y-1">
                     @foreach($user->genres->take(5) as $genre)
-                        <li class="text-green-800">{{ $genre->name }}</li>
+                        <li class="text-seaweed-600">{{ $genre->name }}</li>
                     @endforeach
                     <li><a href="{{ route('music.show', $user->id) }}" class="primary-button p-2">{{ __("Show all") }}</a></li>
                 </ul>
