@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-12">
                         <ul class="footer-minimal-nav">
-                            <li><a href="{{route('about_us')}}">About Us</a></li>
+                            <li><a href="{{route('landing_page')}}">About Us</a></li>
                         </ul>
                     </div>
                     <div class="col-12">

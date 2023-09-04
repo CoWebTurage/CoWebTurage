@@ -29,7 +29,7 @@
                                                                   href="{{route('home')}}">{{ __('Home') }}</a>
                                 </li>
                                 <li class="rd-nav-item"><a class="rd-nav-link"
-                                                           href="{{ route('about_us') }}">{{ __('About Us') }}</a>
+                                                           href="{{ route('landing_page') }}">{{ __('About Us') }}</a>
                                 </li>
                             </ul>
                         </div>

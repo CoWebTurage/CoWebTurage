@@ -24,17 +24,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
 });
 Route::get('/home', [TripController::class, 'home'])->name('home');
-
-Route::get('/about_us', function () {
-    return view('about-us');
-})->name('about_us');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ConversationController::class, 'displayConversations'])->name('messages.chat');
@@ -57,13 +49,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
         Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     });
-
+    Route::get('/profile/{user_id}/', [ProfileController::class, 'display']);
     Route::resource('car', CarController::class)->except(['index', 'show']);
 
-    Route::get('/review/{user_id}/', [ReviewController::class, 'view']);
+    Route::get('/profile/{user_id}/review/', [ReviewController::class, 'view'])->name('review.view');
     Route::get('/review/', [ReviewController::class, 'viewNewReviewsPossible'])->name('review.new');
     Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
-    Route::put('/review/{review_id}/', [ReviewController::class, 'edit']);
+    Route::put('/review/{review_id}/', [ReviewController::class, 'edit'])->name('review.edit');
 
 });
 
@@ -76,7 +68,7 @@ Route::post('/create-trip', [TripController::class, 'createTrip'])->name('create
 
 Route::get('/landing-page', function () {
     return redirect('landing_page/index.html');
-});
+})->name('landing_page');
 
 Route::get("/map", function () {
     return view('map');
