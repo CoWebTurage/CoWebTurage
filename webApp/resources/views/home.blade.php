@@ -56,14 +56,10 @@
                     <div>
                         <p class="booking-title">Genre musical</p>
                         <div class="form-wrap">
-                            <select data-placeholder="Rock" id="genre" name="genre" required>
-                                <option label="placeholder"></option>
-                                <option>Hip-Hop</option>
-                                <option>Rap</option>
-                                <option>Rock</option>
-                                <option>Reggae</option>
-                                <option>Métal</option>
-                                <option>Variété française</option>
+                            <select data-placeholder="Rock">
+                                @foreach($genres as $genre)
+                                    <option>{{__("$genre->name")}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
