@@ -20,15 +20,15 @@ class Passenger extends Model
         'place',
     ];
 
-    protected $attributes = [
-        'status' => 'pending'
-    ];
-
     protected $with = [
         'user',
     ];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
+    }
+
+    public function trip(): BelongsTo {
+        return $this->belongsTo(Trip::class);
     }
 }

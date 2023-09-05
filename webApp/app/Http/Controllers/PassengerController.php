@@ -2,63 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PassengerChangeStatusRequest;
+use App\Models\Passenger;
+use App\Models\Trip;
 use Illuminate\Http\Request;
 
 class PassengerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create(Trip $trip) {
+        return view('trips.passenger', [
+            "trip" => $trip
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Trip $trip)
     {
-        //
+        $passenger = new Passenger();
+        $passenger->place = $request->place;
+        $passenger->status = 'pending';
+        $passenger->user_id = $request->user()->id;
+        $passenger->trip_id = $trip->id;
+
+        $passenger->save();
+
+        return redirect()->route('home');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function accept(PassengerChangeStatusRequest $request, Passenger $passenger)
     {
-        //
+        $passenger->status = 'accepted';
+        $passenger->save();
+
+        return redirect()->route('trips.show', $passenger->trip_id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function reject(PassengerChangeStatusRequest $request, Passenger $passenger)
     {
-        //
-    }
+        $passenger->status = 'rejected';
+        $passenger->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('trips.show', $passenger->trip_id);
     }
 }

@@ -25,14 +25,17 @@
                         <div class="rd-navbar-nav-wrap">
                             <!-- RD Navbar Nav-->
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item active"><a class="rd-nav-link"
-                                                                  href="{{route('home')}}">{{ __('Home') }}</a>
+                                <li class="rd-nav-item active">
+                                    <a class="rd-nav-link" href="{{route('home')}}">{{ __('Home') }}</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link"
-                                                           href="{{ route('landing_page') }}">{{ __('About Us') }}</a>
+                                <li class="rd-nav-item">
+                                    <a class="rd-nav-link" href="{{ route('landing_page') }}">{{ __('About Us') }}</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link"
-                                                           href="{{ route('map') }}">{{ __('Map') }}</a>
+                                <li class="rd-nav-item">
+                                    <a class="rd-nav-link" href="{{ route('map') }}">{{ __('Map') }}</a>
+                                </li>
+                                <li class="rd-nav-item">
+                                    <a class="rd-nav-link" href="{{ route('trips.index') }}">{{ __('My trips') }}</a>
                                 </li>
                             </ul>
                         </div>
