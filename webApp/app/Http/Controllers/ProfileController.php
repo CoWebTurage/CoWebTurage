@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +13,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    private function getRatings($user_id) {
+
+        return Review::where('reviewed_id', $user_id)->avg('stars');
+    }
     public function show() {
         return view('profile.show', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'ratings' => $this->getRatings(Auth::user()->id),
         ]);
     }
 
@@ -62,5 +69,16 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    public function display($user_id)
+    {
+        $user = User::find($user_id);
+        if(is_null($user)) {
+            return Redirect::to('home');
+        }
+        return view('profile.show', [
+            'user' => $user,
+            'ratings' => $this->getRatings($user_id),
+        ]);
     }
 }
