@@ -31,6 +31,9 @@
                                 <li class="rd-nav-item"><a class="rd-nav-link"
                                                            href="{{ route('landing_page') }}">{{ __('About Us') }}</a>
                                 </li>
+                                <li class="rd-nav-item"><a class="rd-nav-link"
+                                                           href="{{ route('map') }}">{{ __('Map') }}</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

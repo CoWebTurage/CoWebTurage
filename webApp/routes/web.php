@@ -72,4 +72,4 @@ Route::get('/landing-page', function () {
 
 Route::get("/map", function () {
     return view('map');
-});
+})->name('map');
