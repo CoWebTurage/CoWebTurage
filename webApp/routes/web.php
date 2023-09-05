@@ -4,6 +4,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\Messages\ConversationController;
 use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
+use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\Review\ReviewController;
@@ -66,9 +67,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
     Route::put('/review/{review_id}/', [ReviewController::class, 'edit'])->name('review.edit');
 
+    Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
+    Route::get('/trips/reserved', [TripController::class, 'reserved'])->name('trips.reserved');
     Route::get('/trips/search', [TripController::class, 'search'])->name('trips.search');
     Route::get('/trips/map/{trip}', [TripController::class, 'map'])->name('trips.map');
+    Route::get('/trips/{trip}/reserve', [PassengerController::class, 'create'])->name('passengers.create');
+    Route::post('/trips/{trip}/reserve', [PassengerController::class, 'store'])->name('passengers.store');
     Route::resource('trips', TripController::class)->except(['index', 'edit']);
+
+    Route::get('/passengers/{passenger}/accept', [PassengerController::class, 'accept'])->name('passengers.accept');
+    Route::get('/passengers/{passenger}/reject', [PassengerController::class, 'reject'])->name('passengers.reject');
 
     Route::get("/map", function () {
         return view('map');

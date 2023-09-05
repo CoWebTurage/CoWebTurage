@@ -5,21 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTripRequest;
 use App\Http\Requests\UpdateTripRequest;
 use App\Models\Car;
-use App\Models\Genre;
+use App\Models\Passenger;
 use App\Models\Review;
 use App\Models\Trip;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 class TripController extends Controller
 {
     public function index()
     {
+        $trips = Trip::where('user_id', '=', Auth::id())->get();
 
+        return view('trips.index', [
+            "trips" => $trips,
+            "mode" => 'index',
+        ]);
     }
 
     public function show(Trip $trip)
@@ -27,7 +28,11 @@ class TripController extends Controller
         // Compute user rating based on reviews
         $rating = Review::all()->where('reviewed_id', '=', $trip->user_id)->avg('stars');
 
-        $trip->load('driver.genres');
+        if(Auth::id() == $trip->user_id) {
+            $trip->load('passengers');
+        } else {
+            $trip->load('driver.genres');
+        }
 
         return view('trips.show', [
             "trip" => $trip,
@@ -104,7 +109,10 @@ class TripController extends Controller
                 return $trip->car->seats >= $trip->passengers_count && (!isset($nb_passengers) || $trip->car->seats <= $nb_passengers);
             });
 
-        return view('trips.search', ['trips' => $trips]);
+        return view('trips.index', [
+            'trips' => $trips,
+            "mode" => 'search',
+        ]);
     }
 
     public function map(Trip $trip)
@@ -116,6 +124,15 @@ class TripController extends Controller
         return view('trips.map', [
             "stops" => $stops,
             "trip" => $trip
+        ]);
+    }
+
+    public function reserved()
+    {
+        $passengers = Passenger::with('trip')->where('user_id', '=', Auth::id())->get();
+
+        return view('trips.reserved', [
+            "passengers" => $passengers
         ]);
     }
 }

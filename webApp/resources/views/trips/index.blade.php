@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="max-height: 400px; overflow-y: auto;">
+    <div class="max-h-[75vh] overflow-y-auto">
+        <h2 style="color: #0d0a0a">
+            @if($mode == 'index')
+                {{ __('My trips') }}
+            @else
+                {{ __('Results') }}
+            @endif
+        </h2>
         <table class="table">
-            <h2 style="color: #0d0a0a">31.08.2023</h2>
-            <br>
             <tr>
 
                 <td>{{ __("Departure Time") }}</td>
@@ -15,7 +20,7 @@
                 <td></td>
             </tr>
 
-            @foreach($trips as $trip)
+            @forelse($trips as $trip)
                 <tr>
                     <td>{{ $trip->start_time }}</td>
                     <td>{{ $trip->end_time }}</td>
@@ -24,7 +29,17 @@
                     <td>{{ $trip->price }} CHF</td>
                     <td><a class="button" href="{{ route('trips.show', $trip->id) }}">{{ __("Details") }}</a></td>
                 </tr>
-            @endforeach
+            @empty
+                @if($mode == 'index')
+                    {{ __("You have no trips") }}
+                @else
+                    {{ __("No result") }}
+                @endif
+            @endforelse
         </table>
     </div>
+    @if($mode == 'index')
+        <a class="primary-button p-2" href="{{ route("trips.create") }}">{{ __("Create trip") }}</a>
+        <a class="primary-button p-2" href="{{ route("trips.reserved") }}">{{ __("Reservations") }}</a>
+    @endif
 @endsection
