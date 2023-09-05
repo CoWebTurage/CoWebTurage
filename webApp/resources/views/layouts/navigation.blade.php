@@ -40,6 +40,10 @@
                                 <tr>
                                     <td>
                                         <a class="button button-white button-sm"
+                                           href="{{ route('messages.chat') }}">{{ __('Chat with users') }}</a>
+                                    </td>
+                                    <td>
+                                        <a class="button button-white button-sm"
                                            href="{{ route('profile.show') }}">{{ $user->firstname." ".$user->lastname }}</a>
                                     </td>
                                     <td>
