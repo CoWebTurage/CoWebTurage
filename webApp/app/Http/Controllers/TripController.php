@@ -2,67 +2,120 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTripRequest;
+use App\Http\Requests\UpdateTripRequest;
 use App\Models\Car;
 use App\Models\Genre;
+use App\Models\Review;
 use App\Models\Trip;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class TripController extends Controller
 {
-
-    public function getAllGenres()
+    public function index()
     {
-        $genres = Genre::all();
-        return $genres;
+
     }
 
-    public function home()
+    public function show(Trip $trip)
     {
-        $genres = $this->getAllGenres();
-        return view('home', ['genres' => $genres]);
+        // Compute user rating based on reviews
+        $rating = Review::all()->where('reviewed_id', '=', $trip->user_id)->avg('stars');
+
+        $trip->load('driver.genres');
+
+        return view('trips.show', [
+            "trip" => $trip,
+            "rating" => $rating
+        ]);
     }
 
     /**
      * This function is used to get all vehicles names for the connected user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-    public function listVehicles()
+    public function create()
     {
         $user_id = Auth::id();
-        $vehicles = Car::where('user_id', $user_id)->pluck('model')->toArray();
-        return view('create_trip.form', ['vehicles' => $vehicles]);
+        $cars = Car::where('user_id', $user_id)->get();
+        return view('trips.create', ['cars' => $cars]);
     }
-
 
     /**
      * This function is used to create a Trip
-     * @param Request $request
-     * @return RedirectResponse
+     * @param StoreTripRequest $request
      */
-    public function createTrip(Request $request)
+    public function store(StoreTripRequest $request)
     {
-        $currentUser = Auth::user();
-        if (is_null($currentUser)) {
-            abort(403);
-        }
-
-        $user_id = Auth::id();
-        $car = Car::where('model', '=', $request->get('vehicle'))->where('user_id', '=', $user_id)->pluck('id')->toArray();
-
-        $trip = new Trip([
-            'start_location' => $request->get('start_location'),
-            'end_location' => $request->get('end_location'),
-            'start_time' => $request->get('start_time'),
-            'end_time' => $request->get('end_time'),
-            'price' => $request->get('price'),
-            'user_id' => $user_id,
-            'car_id' => $car[0],
-        ]);
-
+        $trip = new Trip($request->except('user_id'));
+        $trip->user_id = Auth::id();
         $trip->save();
-        return Redirect::to('successAddTrip');
+
+        return view('trips.add-success');
+    }
+
+    public function edit(Trip $trip)
+    {
+
+    }
+
+    public function update(UpdateTripRequest $request, Trip $trip)
+    {
+        $trip->fill($request->except('user_id'));
+        $trip->save();
+    }
+
+    public function destroy(Trip $trip)
+    {
+        $trip->delete();
+    }
+
+    public function search(Request $request)
+    {
+        // Get the start and end locations from the request
+        $start_location = $request->start_location;
+        $end_location = $request->end_location;
+        $genre = $request->genre;
+        $nb_passengers = $request->nb_passengers;
+
+        // Perform a partial matching search using LIKE
+        $trips = Trip::with(["car", "passengers", "driver" => function ($query) use ($genre) {
+            if (isset($genre)) {
+                $query->whereHas('genres', function ($subquery) use ($genre) {
+                    $subquery->where('name', '=', $genre);
+                });
+            }
+        }])
+            ->withCount('passengers')
+            ->where(function ($query) use ($start_location, $end_location) {
+                // Perform partial matching on start and end locations
+                $query->where('end_location', 'like', '%' . $end_location . '%');
+                if (isset($start_location)) {
+                    $query->where('start_location', 'like', '%' . $start_location . '%');
+                }
+            })
+            ->get()
+            ->filter(function ($trip) use ($nb_passengers) {
+                return $trip->car->seats >= $trip->passengers_count && (!isset($nb_passengers) || $trip->car->seats <= $nb_passengers);
+            });
+
+        return view('trips.search', ['trips' => $trips]);
+    }
+
+    public function map(Trip $trip)
+    {
+        $stops = $trip->detours->pluck('location')->toArray();
+        $stops[] = $trip->end_location;
+        array_unshift($stops, $trip->start_location);
+
+        return view('trips.map', [
+            "stops" => $stops,
+            "trip" => $trip
+        ]);
     }
 }

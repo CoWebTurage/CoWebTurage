@@ -20,7 +20,6 @@ class Trip extends Model
         'start_time',
         'end_time',
         'price',
-        'user_id',
         'car_id',
     ];
 
@@ -30,8 +29,13 @@ class Trip extends Model
         'price' => 'float',
     ];
 
-    public function driver(): BelongsTo {
-        return $this->belongsTo(User::class);
+    protected $with = [
+        'driver',
+        'car'
+    ];
+
+    public function driver() {
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function car(): BelongsTo {

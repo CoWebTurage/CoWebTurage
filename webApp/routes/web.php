@@ -9,6 +9,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\Review\ReviewController;
 use App\Http\Livewire\EditPaymentLink;
 use App\Http\Livewire\EditPlaylist;
+use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect(route('home'));
 });
-Route::get('/home', [TripController::class, 'home'])->name('home');
+Route::get('/home', function () {
+    return view('home', [
+        "genres" => Genre::all()
+    ]);
+})->name('home');
+
+Route::get('/landing-page', function () {
+    return redirect('landing_page/index.html');
+})->name('landing_page');
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ConversationController::class, 'displayConversations'])->name('messages.chat');
@@ -57,19 +66,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
     Route::put('/review/{review_id}/', [ReviewController::class, 'edit'])->name('review.edit');
 
+    Route::get('/trips/search', [TripController::class, 'search'])->name('trips.search');
+    Route::get('/trips/map/{trip}', [TripController::class, 'map'])->name('trips.map');
+    Route::resource('trips', TripController::class)->except(['index', 'edit']);
+
+    Route::get("/map", function () {
+        return view('map');
+    })->name('map');
+
 });
-
-Route::get('/create-journey', [TripController::class, 'listVehicles'])->name('listVehicles');
-Route::get("/successAddTrip", function () {
-    return view('create_trip.add-success');
-});
-
-Route::post('/create-trip', [TripController::class, 'createTrip'])->name('create-trip');
-
-Route::get('/landing-page', function () {
-    return redirect('landing_page/index.html');
-})->name('landing_page');
-
-Route::get("/map", function () {
-    return view('map');
-})->name('map');
