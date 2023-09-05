@@ -2,83 +2,26 @@
 
 @section('content')
     <!-- Swiper-->
-    <form action={{route('searchTrips')}} method="POST">
+    <form class="flex w-full" method="GET" action={{ route('trips.search') }} >
     @csrf
-        <table class="table">
-            <tr>
-                <td>
-                    <div>
-                        <p class="booking-title">Départ (optionnel)</p>
-                        <div class="form-wrap">
-                            <input class="form-input" id="start_location" type="text" name="start_location">
-                            <label class="form-label" for="start_location">Lieu</label>
-                        </div>
-                    </di
-                </td>
 
-                <td>
-                    <div>
-                        <p class="booking-title">Destination</p>
-                        <div class="form-wrap">
-                            <input class="form-input" id="end_location" type="text" name="end_location" required>
-                            <label class="form-label" for="end_location">Lieu</label>
-                        </div>
-                    </div>
-                </td>
+        <x-text-input id="start_location" type="text" name="start_location" :placeholder='__("Departure (Optional)")'></x-text-input>
 
-                <td>
-                    <div>
-                        <p class="booking-title">Date</p>
-                        <div class="form-wrap form-wrap-icon">
-                            <input class="form-input" id="date" type="text" name="date" data-time-picker="date" required>
-                        </div>
-                    </div>
-                </td>
+        <x-text-input id="end_location" type="text" name="end_location" required :placeholder='__("Destination")'></x-text-input>
 
-                <td>
-                    <div>
-                        <p class="booking-title">Nb. passagers</p>
-                        <div class="form-wrap">
-                            <select data-placeholder="1" id="nbPassenger" name="nbPassenger" required>
-                                <option label="placeholder"></option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                            </select>
-                        </div>
-                    </div>
-                </td>
+        <x-text-input id="date" type="text" name="date" data-time-picker="datetime" required></x-text-input>
 
-                <td>
-                    <div>
-                        <p class="booking-title">Genre musical</p>
-                        <div class="form-wrap">
-                            <select data-placeholder="Rock">
-                                @foreach($genres as $genre)
-                                    <option>{{__("$genre->name")}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </td>
+        <x-text-input id="nb_passengers" type="number" name="nb_passengers" :placeholder='__("Passengers")'></x-text-input>
 
-                <td>
-                    <div class="form-wrap form-wrap-icon">
-                        <button class="button button-lg button-gray-600" type="submit">Rechercher</button>
-                    </div>
-                </td>
+        <select id="genre_id" name="genre_id">
+            @foreach($genres as $genre)
+                <option value="{{ $genre->id }}">{{__("$genre->name")}}</option>
+            @endforeach
+        </select>
 
-            </tr>
-        </table>
+        <button class="button button-lg button-gray-600" type="submit">Rechercher</button>
+
     </form>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
 
     <!-- Featured Offers-->
     <section class="section section-lg bg-default">

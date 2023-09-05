@@ -5,11 +5,11 @@ use App\Http\Controllers\Messages\ConversationController;
 use App\Http\Controllers\GenreUserController;
 use App\Http\Controllers\Messages\MessageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\Review\ReviewController;
 use App\Http\Livewire\EditPaymentLink;
 use App\Http\Livewire\EditPlaylist;
+use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -27,11 +27,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', [TripController::class, 'home'])->name('home');
+Route::get('/home', function () {
+    return view('home', [
+        "genres" => Genre::all()
+    ]);
+})->name('home');
 
 Route::get('/about_us', function () {
     return view('about-us');
 })->name('about_us');
+
+Route::get('/landing-page', function () {
+    return redirect('landing_page/index.html');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -66,35 +74,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
     Route::put('/review/{review_id}/', [ReviewController::class, 'edit']);
 
-});
+    Route::get('/trips/search', [TripController::class, 'search'])->name('trips.search');
+    Route::get('/trips/map/{trip}', [TripController::class, 'map'])->name('trips.map');
+    Route::resource('trips', TripController::class)->except(['index', 'edit']);
 
-Route::get('/create-journey', [TripController::class, 'listVehicles'])->name('listVehicles');
-Route::get("/successAddTrip", function () {
-    return view('create_trip.add-success');
-});
+    Route::get("/map", function () {
+        return view('map');
+    });
 
-Route::post('/create-trip', [TripController::class, 'createTrip'])->name('create-trip');
-
-Route::post('/searchTrips', [SearchController::class, 'searchTrip'])->name('searchTrips');
-//Route::get('/searchDetails/{id}', [SearchController::class, 'searchDetails'])->name('searchDetails');
-Route::get('/searchDetails', [SearchController::class, 'searchDetails'])->name('searchDetails');
-
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
-
-
-Route::get('/search', function () {
-    return view('search');
-})->name('search');
-
-Route::get('/showMap', [SearchController::class, 'showMap'])->name('showMap');
-//Route::get('/test', [SearchController::class, 'test'])->name('test');
-
-Route::get('/landing-page', function () {
-    return redirect('landing_page/index.html');
-});
-
-Route::get("/map", function () {
-    return view('map');
 });

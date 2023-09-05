@@ -12,8 +12,8 @@ class Detour extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'place',
         'location',
+        'order',
         'trip_id',
     ];
 }

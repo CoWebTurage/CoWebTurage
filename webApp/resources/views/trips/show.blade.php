@@ -7,15 +7,15 @@
             <h2>Détails</h2>
             <div class="location">
                 <p><strong>Departure Location:</strong></p>
-                <p class="normal-text">{{ $selectedTrip->start_location }} - {{ date('H:i', strtotime($selectedTrip->start_time)) }}</p>
+                <p class="normal-text">{{ $trip->start_location }} - {{ date('H:i', strtotime($trip->start_time)) }}</p>
             </div>
             <div class="location">
                 <p><strong>Arrival Location:</strong></p>
-                <p class="normal-text">{{ $selectedTrip->end_location }} - {{ date('H:i', strtotime($selectedTrip->end_time)) }}</p>
+                <p class="normal-text">{{ $trip->end_location }} - {{ date('H:i', strtotime($trip->end_time)) }}</p>
             </div>
             <div class="price">
                 <p><strong>Prix:</strong></p>
-                <p class="normal-text">{{ $selectedTrip->price }} CHF</p>
+                <p class="normal-text">{{ $trip->price }} CHF</p>
             </div>
         </div>
 
@@ -23,11 +23,11 @@
             <h2>Détails du conducteur</h2>
             <div class="location">
                 <p><strong>Nom:</strong></p>
-                <p class="normal-text">{{ $driver->firstname }}</p>
+                <p class="normal-text">{{ $trip->driver->firstname }}</p>
             </div>
             <div class="location">
                 <p><strong>Nom de famille:</strong></p>
-                <p class="normal-text">{{ $driver->lastname }}</p>
+                <p class="normal-text">{{ $trip->driver->lastname }}</p>
             </div>
             <div class="location">
                 <p><strong>Évaluation:</strong></p>
@@ -36,7 +36,7 @@
             <div class="location">
                 <p><strong>Préférence musicale:</strong></p>
                 <p class="normal-text">
-                    @foreach($genre as $g)
+                    @foreach($trip->driver->genres as $g)
                         {{ $g->name." / " }}
                     @endforeach
                 </p>
@@ -52,7 +52,9 @@
                 </td>
 
                 <td>
-                    <a class="map-button button" href="{{ route('showMap', ['departure' => $selectedTrip->start_location, 'arrival' => $selectedTrip->end_location]) }}">Voir sur la carte</a>
+                    <a class="map-button button"
+                       href="{{ route('trips.map', $trip->id) }}">Voir
+                        sur la carte</a>
                 </td>
             </tr>
         </table>

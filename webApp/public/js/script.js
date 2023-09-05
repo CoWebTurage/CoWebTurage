@@ -1161,20 +1161,11 @@
 				var
 					$dateTimePicker = $( plugins.bootstrapDateTimePicker[ i ] ),
 					options = {
-						date:      $dateTimePicker.attr( "data-time-picker" ) === "date",
-						time:      $dateTimePicker.attr( "data-time-picker" ) === "time",
-						shortTime: true
+						date:      ["date", "datetime"].includes($dateTimePicker.attr( "data-time-picker" )),
+						time:      ["time", "datetime"].includes($dateTimePicker.attr( "data-time-picker" )),
+						shortTime: true,
+                        format: "YYYY-MM-DD HH:mm"
 					};
-
-				if ( options.date ) {
-					options.format = 'DD/MM/YY';
-					options.minDate = new Date();
-				} else if ( options.time ) {
-					options.format = 'HH:mm';
-				} else {
-					options.format = 'dddd DD MMMM YYYY - HH:mm';
-				}
-
 				$dateTimePicker.bootstrapMaterialDatePicker( options );
 				$dateTimePicker.bootstrapMaterialDatePicker( 'setDate', moment() );
 			}
