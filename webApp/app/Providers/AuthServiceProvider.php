@@ -3,7 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +26,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('update-review', function (User $user, Review $review) {
+            return $user->id === $review->reviewer()->id;
+        });
+        Gate::define('update-user', function (User $user, User $userToEdit) {
+            return $user->id === $userToEdit->id;
+        });
     }
 }
