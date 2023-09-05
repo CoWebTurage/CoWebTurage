@@ -72,6 +72,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/map", function () {
         return view('map');
-    });
+    })->name('map');
 
 });
