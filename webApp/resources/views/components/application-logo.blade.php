@@ -1,1 +1,1 @@
-<image src=" {{ asset('landing_page/images/logoCoWebTurage.png') }}"></image>
+<img src="{{ asset('landing_page/images/logoCoWebTurage.png') }}" {!! $attributes !!} />

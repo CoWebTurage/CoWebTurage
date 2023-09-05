@@ -19,8 +19,14 @@
 
     <div id="map"></div>
 
+
+
+    <div class="mt-4">
+        <a class="primary-button p-2 text-lg" href="javascript:history.back()">Retour à la course</a>
+    </div>
+
     <script>
-        const map = L.map('map').setView([51.505, -0.09], 13);
+        const map = L.map('map').setView([46.80111, 8.22667], 12);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -32,7 +38,7 @@
             const departure = coordinates[0];
             const destination = coordinates[coordinates.length - 1];
 
-            map.setView([departure.lat, departure.lon], 13);
+            map.fitBounds(L.latLngBounds(coordinates));
 
             const routingControl = L.Routing.control({
                 waypoints: coordinates.map(c => {
@@ -70,27 +76,7 @@
                 console.error('Geocoding error:', error);
             }
         }
-    </script>
 
-    <div class="button-container">
-        <table>
-            <tr>
-                <td>
-                    <a class="back-button button" href="javascript:history.back()">Retour à la course</a>
-                </td>
-
-                <td>
-                    <a class="back-button button" href="javascript:history.back()">Réserver la course</a>
-                </td>
-
-                <td>
-                    <a class="back-button button" href="javascript:history.back()">Continuer</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <script>
         function goBack() {
             window.history.back();
         }

@@ -3616,13 +3616,6 @@ textarea.form-input {
 	background: #f5f5f5;
 }
 
-.ie-10 .box-booking::before,
-.ie-11 .box-booking::before,
-.ie-edge .box-booking::before {
-	bottom: 0;
-	background: transparent;
-	box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.15);
-}
 
 .box-booking {
 	position: relative;
@@ -3632,7 +3625,7 @@ textarea.form-input {
 	border-radius: 7px;
 }
 
-.box-booking::before {
+/*.box-booking::before {
 	position: absolute;
 	content: '';
 	top: 12%;
@@ -3643,7 +3636,7 @@ textarea.form-input {
 	filter: blur(20px);
 	border-radius: 7px;
 	z-index: -1;
-}
+}*/
 
 .booking-form {
 	display: flex;
@@ -5113,7 +5106,7 @@ html.boxed body {
 	margin-top: 15px;
 }
 
-h2 + p,
+/*h2 + p,*/
 .heading-2 + p {
 	margin-top: 30px;
 }
@@ -5135,13 +5128,13 @@ img + p {
 	margin-top: 15px;
 }
 
-h3 + img {
+/*h3 + img {
 	margin-top: 42px;
-}
+}*/
 
-h3 + p {
+/*h3 + p {
 	margin-top: 28px;
-}
+}*/
 
 * + .row {
 	margin-top: 30px;
@@ -5159,13 +5152,13 @@ h3 + p {
 	margin-top: 30px;
 }
 
-* + .button {
+/** + .button {
 	margin-top: 30px;
 }
 
 h3 + .button {
 	margin-top: 37px;
-}
+}*/
 
 * + .social-list {
 	margin-top: 30px;
@@ -5541,21 +5534,16 @@ html [class*='section-'].section-bottom-0 {
 	position: relative;
 	background: #232323;
 	overflow: hidden;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 767.98px) {
 	.section-main-bunner {
 		padding-bottom: 80px;
-	}
-}
-
-@media (min-width: 992px) {
-	.section-main-bunner {
-		min-height: 100vh;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 }
 
@@ -12959,7 +12947,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 .select2-container {
 	position: relative;
 	display: inline-block;
-	width: 100% !important;
+	/*width: 100% !important;*/
 	margin: 0;
 	vertical-align: middle;
 	box-sizing: border-box;

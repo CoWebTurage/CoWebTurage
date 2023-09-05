@@ -1,20 +1,19 @@
-<form method="post" action="{{ route('message.send') }}">
+<h2>{{ __("New chat") }}</h2>
+<form class="space-y-2" method="post" action="{{ route('message.send') }}">
     @csrf
-    <label>
-        {{ __('Select a user to message') }}
-        <div>
-            <select name="receiver_id">
-                @foreach($usersToChat as $userToChat)
-                    <option value="{{ $userToChat->id }}"> {{ $userToChat->firstname . " " . $userToChat->lastname }}</option>
-                @endforeach
-            </select>
-        </div>
-    </label>
+
     <div>
-        <label>
-            {{__('Type your message here')}}
-            <input name='body' class="form-input">
-        </label>
+        <label for="receiver_id">{{ __('Select a user to message') }}</label>
+        <select id="receiver_id" name="receiver_id">
+            @foreach($usersToChat as $userToChat)
+                <option value="{{ $userToChat->id }}"> {{ $userToChat->firstname . " " . $userToChat->lastname }}</option>
+            @endforeach
+        </select>
     </div>
-    <button class="form-button">{{ __('Submit') }}</button>
+
+    <div>
+        <label for="body">{{__('Type your message here')}}</label>
+        <input id="body" name='body' class="form-input">
+    </div>
+    <button class="primary-button p-2 text-base" type="submit">{{ __('Submit') }}</button>
 </form>

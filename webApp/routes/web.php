@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
         Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     });
-    Route::get('/profile/{user_id}/', [ProfileController::class, 'display']);
+    Route::get('/profile/{user_id}/', [ProfileController::class, 'display'])->name('profile.display');
     Route::resource('car', CarController::class)->except(['index', 'show']);
 
     Route::get('/profile/{user_id}/review/', [ReviewController::class, 'view'])->name('review.view');

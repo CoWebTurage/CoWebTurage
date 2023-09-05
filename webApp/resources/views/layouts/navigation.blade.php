@@ -14,11 +14,13 @@
                         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span>
                         </button>
                         <!-- RD Navbar Brand-->
-                        <div class="rd-navbar-brand"><a href="{{route('home')}}"><img class="brand-logo-light"
-                                                                                      src="/images/logo-default1-140x57.png"
-                                                                                      alt="" width="140"
-                                                                                      height="57"
-                                                                                      srcset="/images/logo-default-280x113.png 2x"/></a>
+                        <div class="rd-navbar-brand"><a href="{{route('home')}}">
+                                <image class="brand-logo-light"
+                                       src="/images/logo-default1-140x57.png"
+                                       alt="" width="140"
+                                       height="57"
+                                       srcset="/images/logo-default-280x113.png 2x"></image>
+                            </a>
                         </div>
                     </div>
                     <div class="rd-navbar-main-element">
@@ -37,22 +39,18 @@
                                 <li class="rd-nav-item">
                                     <a class="rd-nav-link" href="{{ route('trips.index') }}">{{ __('My trips') }}</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        @if(($user = Auth::user()) !== null)
-                            <table>
-                                <tr>
-                                    <td>
+
+                                @if(($user = Auth::user()) !== null)
+
+                                    <li class="rd-nav-item">
                                         <a class="button button-white button-sm"
                                            href="{{ route('messages.chat') }}">{{ __('Chat with users') }}</a>
-                                    </td>
-                                    <td>
+                                    </li>
+                                    <li class="rd-nav-item">
                                         <a class="button button-white button-sm"
                                            href="{{ route('profile.show') }}">{{ $user->firstname." ".$user->lastname }}</a>
-                                    </td>
-                                    <td>
+                                    </li>
+                                    <li class="rd-nav-item">
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <a class="button button-white button-sm"
@@ -61,13 +59,16 @@
                                                 {{ __('Log Out') }}
                                             </a>
                                         </form>
-                                    </td>
-                                </tr>
-                            </table>
-                        @else
-                            <a class="button button-white button-sm"
-                               href="{{ route('login') }}">{{ __('Log In') }}</a>
-                        @endif
+                                    </li>
+
+                                @else
+                                    <li class="rd-nav-item">
+                                        <a class="button button-white button-sm"
+                                           href="{{ route('login') }}">{{ __('Log In') }}</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
