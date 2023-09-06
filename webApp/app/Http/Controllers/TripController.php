@@ -8,6 +8,7 @@ use App\Models\Car;
 use App\Models\Passenger;
 use App\Models\Review;
 use App\Models\Trip;
+use DateInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -91,8 +92,11 @@ class TripController extends Controller
         // Get the start and end locations from the request
         $start_location = $request->start_location;
         $end_location = $request->end_location;
-        $genre = $request->genre;
+        $date = $request->date;
         $nb_passengers = $request->nb_passengers;
+        $genre = $request->genre;
+
+        $interval = new DateInterval("PT30M");
 
         // Perform a partial matching search using LIKE
         $trips = Trip::with(["car", "passengers", "driver" => function ($query) use ($genre) {
@@ -102,6 +106,7 @@ class TripController extends Controller
                 });
             }
         }])
+            ->whereBetween('start_time', [date_sub(date_create($date), $interval)->format('Y-m-d H:i'), date_add(date_create($date), $interval)->format('Y-m-d H:i')])
             ->withCount('passengers')
             ->where(function ($query) use ($start_location, $end_location) {
                 // Perform partial matching on start and end locations
@@ -110,6 +115,7 @@ class TripController extends Controller
                     $query->where('start_location', 'like', '%' . $start_location . '%');
                 }
             })
+
             ->get()
             ->filter(function ($trip) use ($nb_passengers) {
                 return $trip->car->seats >= $trip->passengers_count && (!isset($nb_passengers) || $trip->car->seats <= $nb_passengers);
