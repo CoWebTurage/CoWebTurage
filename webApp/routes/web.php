@@ -77,9 +77,4 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/passengers/{passenger}/accept', [PassengerController::class, 'accept'])->name('passengers.accept');
     Route::get('/passengers/{passenger}/reject', [PassengerController::class, 'reject'])->name('passengers.reject');
-
-    Route::get("/map", function () {
-        return view('map');
-    })->name('map');
-
 });

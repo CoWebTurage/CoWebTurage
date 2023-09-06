@@ -8205,12 +8205,12 @@ html.rd-navbar-fixed-linked .page {
 	padding: 32px 0;
 }
 
-.rd-navbar-classic.rd-navbar-static .rd-navbar-brand img {
+/*.rd-navbar-classic.rd-navbar-static .rd-navbar-brand img {
 	width: auto;
 	height: auto;
 	max-width: 200px;
 	max-height: 200px;
-}
+}*/
 
 .rd-navbar-classic.rd-navbar-static .rd-navbar-main-element {
 	display: flex;

@@ -15,8 +15,8 @@
                         </button>
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand"><a href="{{route('home')}}">
-                                <image class="brand-logo-light"
-                                       src="/images/logo-default1-140x57.png"
+                                <image class="brand-logo-light h-[57px] w-auto"
+                                       src="/images/logo-default-280x113.png"
                                        alt="" width="140"
                                        height="57"
                                        srcset="/images/logo-default-280x113.png 2x"></image>
@@ -32,9 +32,6 @@
                                 </li>
                                 <li class="rd-nav-item">
                                     <a class="rd-nav-link" href="{{ route('landing_page') }}">{{ __('About Us') }}</a>
-                                </li>
-                                <li class="rd-nav-item">
-                                    <a class="rd-nav-link" href="{{ route('map') }}">{{ __('Map') }}</a>
                                 </li>
                                 <li class="rd-nav-item">
                                     <a class="rd-nav-link" href="{{ route('trips.index') }}">{{ __('My trips') }}</a>
@@ -62,6 +59,11 @@
                                     </li>
 
                                 @else
+                                    <li class="rd-nav-item">
+                                        <a class="button button-white button-sm"
+                                           href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+
                                     <li class="rd-nav-item">
                                         <a class="button button-white button-sm"
                                            href="{{ route('login') }}">{{ __('Log In') }}</a>
