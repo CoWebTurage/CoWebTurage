@@ -6,6 +6,7 @@ use App\Http\Requests\PassengerChangeStatusRequest;
 use App\Models\Passenger;
 use App\Models\Trip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PassengerController extends Controller
 {
@@ -20,6 +21,10 @@ class PassengerController extends Controller
      */
     public function store(Request $request, Trip $trip)
     {
+        if(Gate::allows('update-trip', $trip)) {
+            abort(400);
+        }
+
         $passenger = new Passenger();
         $passenger->place = $request->place;
         $passenger->status = 'pending';

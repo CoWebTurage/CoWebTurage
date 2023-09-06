@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Review;
+use App\Models\Trip;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('update-review', function (User $user, Review $review) {
+            return $user->id === $review->reviewer()->id;
+        });
+        Gate::define('update-user', function (User $user, User $userToEdit) {
+            return $user->id === $userToEdit->id;
+        });
+        Gate::define('update-trip', function (User $user, Trip $trip) {
+            return $user->id != $trip->driver()->id;
+        });
     }
 }

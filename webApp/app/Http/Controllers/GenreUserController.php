@@ -6,7 +6,7 @@ use App\Http\Requests\GenreUserUpdateRequest;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class GenreUserController extends Controller
 {
@@ -20,6 +20,7 @@ class GenreUserController extends Controller
 
     public function update(GenreUserUpdateRequest $request, User $user)
     {
+        Gate::authorize('update-user', $user);
         $user->genres()->sync($request->genres);
         return to_route('music.show', $user->id);
     }

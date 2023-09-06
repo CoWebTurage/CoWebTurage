@@ -69,6 +69,12 @@ class TripController extends Controller
 
     }
 
+    /**
+     * Function is not called, only here for future use
+     * @param UpdateTripRequest $request
+     * @param Trip $trip
+     * @return void
+     */
     public function update(UpdateTripRequest $request, Trip $trip)
     {
         $trip->fill($request->except('user_id'));
