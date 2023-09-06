@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/trips/map/{trip}', [TripController::class, 'map'])->name('trips.map');
     Route::get('/trips/{trip}/reserve', [PassengerController::class, 'create'])->name('passengers.create');
     Route::post('/trips/{trip}/reserve', [PassengerController::class, 'store'])->name('passengers.store');
-    Route::resource('trips', TripController::class)->except(['index', 'edit']);
+    Route::resource('trips', TripController::class)->except(['index', 'edit', 'update']);
 
     Route::get('/passengers/{passenger}/accept', [PassengerController::class, 'accept'])->name('passengers.accept');
     Route::get('/passengers/{passenger}/reject', [PassengerController::class, 'reject'])->name('passengers.reject');

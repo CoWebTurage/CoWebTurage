@@ -14,11 +14,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    private function getRatings($user_id) {
+    private function getRatings($user_id)
+    {
 
         return Review::where('reviewed_id', $user_id)->avg('stars');
     }
-    public function show() {
+
+    public function show()
+    {
         return view('profile.show', [
             'user' => Auth::user(),
             'ratings' => $this->getRatings(Auth::user()->id),
@@ -40,9 +43,8 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        if (! Gate::allows('update-user', $request->user())) {
-            abort(403);
-        }
+        Gate::authorize('update-user', $request->user());
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -74,10 +76,11 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
     public function display($user_id)
     {
         $user = User::find($user_id);
-        if(is_null($user)) {
+        if (is_null($user)) {
             return Redirect::to('home');
         }
         return view('profile.show', [

@@ -2,13 +2,11 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
-use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Review;
+use App\Models\Trip;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         });
         Gate::define('update-user', function (User $user, User $userToEdit) {
             return $user->id === $userToEdit->id;
+        });
+        Gate::define('update-trip', function (User $user, Trip $trip) {
+            return $user->id != $trip->driver()->id;
         });
     }
 }
