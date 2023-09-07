@@ -77,7 +77,9 @@
 
         <a class="map-button primary-button p-2" href="{{ route('trips.map', $trip->id) }}">{{ __("See on map") }}</a>
 
-        <a class="map-button primary-button p-2" href="{{ route('passengers.create', $trip->id) }}">{{ __("Reserve") }}</a>
+        @if(!$trip->passengers->pluck('user_id')->contains(Auth::id()))
+            <a class="map-button primary-button p-2" href="{{ route('passengers.create', $trip->id) }}">{{ __("Reserve") }}</a>
+        @endif
     </div>
     @endif
 @endsection

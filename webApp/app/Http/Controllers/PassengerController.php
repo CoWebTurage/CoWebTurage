@@ -31,7 +31,11 @@ class PassengerController extends Controller
         $passenger->user_id = $request->user()->id;
         $passenger->trip_id = $trip->id;
 
-        $passenger->save();
+        try {
+            $passenger->save();
+        } catch (\Error $e) {
+            abort(400);
+        }
 
         return redirect()->route('home');
     }
