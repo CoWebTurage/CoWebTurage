@@ -1,26 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-xl text-left"> {{ $currentUser->firstname . " " . $currentUser->lastname }}</div>
-    <div class="text-xl text-right"> {{$partner->firstname . " " .$partner->lastname }}</div>
-    @foreach($messages as $message)
-        @if($message->sender_id ==$currentUser->id)
-            <div class="text-left">
+    <div class="font-bold text-xl flex justify-between">
+        <div>{{ $currentUser->firstname . " " . $currentUser->lastname }}</div>
+        <div><x-profile-link :user="$partner"></x-profile-link></div>
+    </div>
+    <hr/>
+    <div class="flex flex-col p-2 gap-y-2 max-h-[50vh] overflow-y-auto">
+        @foreach($messages as $message)
+            @php($mine = $message->sender_id == $currentUser->id)
+            <div @class(["self-start" => $mine, "self-end" => !$mine, "rounded bg-neutral-300/40 p-2 text-xl"])>
                 {{ $message->content }}
             </div>
-        @else
-            <div class="text-right">
-                {{ $message->content }}
-            </div>
-        @endif
-    @endforeach
+        @endforeach
+    </div>
+    <hr/>
     <div>
-        <form method="post" action="{{ route('message.send') }}">
+        <form class="space-y-2" method="post" action="{{ route('message.send') }}">
             @csrf
-            {{ __('Type here to send a new message') }}
-            <input class="form-input" name="body">
-            <button class="form-button">{{ __('Send') }}</button>
-            <input name="receiver_id" type="hidden" value="{{$partner->id}}">
+            <input name="receiver_id" type="hidden" value="{{ $partner->id }}">
+            <input class="form-input" name="body" placeholder="{{ __('Type here to send a new message') }}">
+            <button class="primary-button p-2 text-base">{{ __('Send') }}</button>
         </form>
     </div>
 @endsection

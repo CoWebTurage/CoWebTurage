@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="py-12 grid grid-rows-2">
-        <div class="font-medium text-left text-lg">
+        <div class="text-left text-lg">
             <div>
                 <h3 class="text-body">{{ __("Music") }}</h3>
             </div>
@@ -15,7 +15,7 @@
             @endif
         </div>
 
-        <div class="font-medium text-left text-lg">
+        <div class="text-left text-lg">
             <div>
                 <h3 class="text-body">{{ __("Playlists") }}</h3>
             </div>

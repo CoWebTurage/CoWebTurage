@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css"
           href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CPT+Serif:400,700">
     <!--<link rel="stylesheet" href="ressources/css/bootstrap.css">-->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
@@ -44,9 +43,9 @@
             <div class="main-bunner-img"
                  style="background-image: url(/images/bg-bunner-2.png); background-size: cover;"></div>
             <div class="main-bunner-inner max-h-full overflow-auto">
-                <div class="container">
+                <div class="container m-auto">
                     <div class="bg-beige-200">
-                        <div class="box-booking bg-white/70">
+                        <div class="box-booking bg-white/70 py-[10px]">
                             @yield('content')
                         </div>
                     </div>
@@ -54,45 +53,6 @@
             </div>
         </section>
     </main>
-    <!-- SLOT -->
-    </main>
-
-    <!-- Page Footer-->
-    <footer class="section footer-minimal context-dark">
-        <div class="container wow-outer">
-            <div class="wow fadeIn">
-                <div class="row row-60">
-                    <div class="col-12"><a href="{{route('home')}}"><img src="/images/logo-default-280x113.png" alt=""
-                                                                  width="140" height="57"
-                                                                  srcset="/images/logo-default-280x113.png 2x"/></a>
-                    </div>
-                    <div class="col-12">
-                        <ul class="footer-minimal-nav">
-                            <li><a href="{{route('landing_page')}}">About Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-12">
-                        <ul class="social-list">
-                            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-facebook"
-                                   href="#"></a></li>
-                            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-instagram"
-                                   href="#"></a></li>
-                            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-twitter"
-                                   href="#"></a></li>
-                            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-youtube-play"
-                                   href="#"></a></li>
-                            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-pinterest-p"
-                                   href="#"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="rights"><span>&copy;&nbsp; </span><span
-                        class="copyright-year"></span><span>&nbsp;</span><span>Pesto</span><span>.&nbsp;</span><span>All Rights Reserved.</span><span>&nbsp;</span><a
-                        href="#">Privacy Policy</a>. Design&nbsp;by&nbsp;<a href="https://www.templatemonster.com">Templatemonster</a>
-                </p>
-            </div>
-        </div>
-    </footer>
 </div>
 
 <script src="/js/core.min.js"></script>

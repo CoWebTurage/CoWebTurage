@@ -49,7 +49,7 @@ export default {
 
     plugins: [forms],
 
-    corePlugins: {
+    /*corePlugins: {
         preflight: false
-    }
+    }*/
 };

@@ -17,7 +17,7 @@
                         <td class="p-2">{{ $car->color }}</td>
                         <td class="p-2">{{ $car->seats }}</td>
                         <td class="p-2 flex justify-end space-x-1">
-                            @if(Auth::user() == $user_id)
+                            @if(Auth::user()->id == $user_id)
                                 <a href="{{ route("car.edit", $car->id) }}"
                                    class="primary-button text-center p-2 aspect-square"><i class="fas fa-pen"></i></a>
 

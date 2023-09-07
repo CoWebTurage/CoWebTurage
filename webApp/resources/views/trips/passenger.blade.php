@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div>
+        <h2>{{ __("Reserve seat") }}</h2>
         <form method="POST" action="{{ route('passengers.store', $trip->id) }}">
             @csrf
             <x-text-input type="text" name="place" id="place" required :placeholder='__("Location")'></x-text-input>

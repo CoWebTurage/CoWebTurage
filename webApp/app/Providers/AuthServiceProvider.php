@@ -25,13 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('update-review', function (User $user, Review $review) {
-            return $user->id === $review->reviewer()->id;
+            $review->load('reviewer');
+            return $user->id === $review->reviewer->id;
         });
         Gate::define('update-user', function (User $user, User $userToEdit) {
             return $user->id === $userToEdit->id;
         });
         Gate::define('update-trip', function (User $user, Trip $trip) {
-            return $user->id != $trip->driver()->id;
+            $trip->load('driver');
+            return $user->id != $trip->driver->id;
         });
     }
 }

@@ -21,7 +21,7 @@ class PassengerController extends Controller
      */
     public function store(Request $request, Trip $trip)
     {
-        if(Gate::allows('update-trip', $trip)) {
+        if(Gate::denies('update-trip', $trip)) {
             abort(400);
         }
 

@@ -59,13 +59,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/payment/edit', EditPaymentLink::class)->name('payment.edit');
         Route::get('/cars', [CarController::class, 'index'])->name('car.index');
     });
-    Route::get('/profile/{user_id}/', [ProfileController::class, 'display']);
+    Route::get('/profile/{user_id}/', [ProfileController::class, 'display'])->name('profile.display');
     Route::resource('car', CarController::class)->except(['index', 'show']);
 
     Route::get('/profile/{user_id}/review/', [ReviewController::class, 'view'])->name('review.view');
-    Route::get('/review/', [ReviewController::class, 'viewNewReviewsPossible'])->name('review.new');
-    Route::post('/review/', [ReviewController::class, 'createReview'])->name('review.send');
-    Route::put('/review/{review_id}/', [ReviewController::class, 'edit'])->name('review.edit');
+    Route::get('/review/', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/review/', [ReviewController::class, 'store'])->name('review.store');
+    Route::put('/review/{review_id}/', [ReviewController::class, 'update'])->name('review.update');
 
     Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
     Route::get('/trips/reserved', [TripController::class, 'reserved'])->name('trips.reserved');
@@ -77,9 +77,4 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/passengers/{passenger}/accept', [PassengerController::class, 'accept'])->name('passengers.accept');
     Route::get('/passengers/{passenger}/reject', [PassengerController::class, 'reject'])->name('passengers.reject');
-
-    Route::get("/map", function () {
-        return view('map');
-    })->name('map');
-
 });
