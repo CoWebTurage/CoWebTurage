@@ -12910,7 +12910,6 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 .select2-container {
 	position: relative;
 	display: inline-block;
-	/*width: 100% !important;*/
 	margin: 0;
 	vertical-align: middle;
 	box-sizing: border-box;
