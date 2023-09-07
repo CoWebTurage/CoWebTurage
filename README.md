@@ -82,6 +82,7 @@ un déploiement automatique sur le serveur de production via GitHub Action.
 - GitHub repositories: https://github.com/CoWebTurage/CoWebTurage
 - Website production: http://146.190.177.74
 - Landing page: http://146.190.177.74/landing_page
+- Vidéo présentation: https://www.youtube.com/watch?v=ynXZ3ZDEgXU
 
 ## Développement
 
