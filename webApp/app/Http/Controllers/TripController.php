@@ -107,7 +107,11 @@ class TripController extends Controller
             }
         }])
             ->whereBetween('start_time', [date_sub(date_create($date), $interval)->format('Y-m-d H:i'), date_add(date_create($date), $interval)->format('Y-m-d H:i')])
-            ->withCount('passengers')
+            ->withCount([
+                'passengers as passengers_count' => function($query) {
+                    $query->where('status', 'accepted');
+                }
+            ])
             ->where(function ($query) use ($start_location, $end_location) {
                 // Perform partial matching on start and end locations
                 $query->where('end_location', 'like', '%' . $end_location . '%');
@@ -118,7 +122,7 @@ class TripController extends Controller
 
             ->get()
             ->filter(function ($trip) use ($nb_passengers) {
-                return $trip->car->seats >= $trip->passengers_count && (!isset($nb_passengers) || $trip->car->seats <= $nb_passengers);
+                return $trip->car->seats > $trip->passengers_count && (!$nb_passengers || $trip->car->seats <= $nb_passengers);
             });
 
         return view('trips.index', [
