@@ -15,10 +15,13 @@ class ReviewController extends Controller
     public function view($user_id)
     {
         $reviews = Review::where('reviewed_id', $user_id)->get();
-        return view('review.review-display', ['user' => User::find($user_id), 'reviews' => $reviews]);
+        return view('review.review-display', [
+            'user' => User::find($user_id),
+            'reviews' => $reviews
+        ]);
     }
 
-    public function viewNewReviewsPossible()
+    public function create()
     {
         /** @var User $currentUser */
         $currentUser = Auth::user();
@@ -26,10 +29,12 @@ class ReviewController extends Controller
         $newUsers = User::all()
             ->except($userAlreadyReview->toArray())
             ->except($currentUser->id);
-        return view('review.review-new', ['newUsers' => $newUsers]);
+        return view('review.review-new', [
+            'newUsers' => $newUsers
+        ]);
     }
 
-    public function createReview(Request $request)
+    public function store(Request $request)
     {
         $currentUser = Auth::user();
         if (is_null($currentUser)) {
@@ -53,10 +58,10 @@ class ReviewController extends Controller
             'reviewed_id' => $request->get('reviewed_id'),
         ]);
         $review->save();
-        return Redirect::route('review.view', $request->get('reviewed_id'));
+        return redirect()->route('review.view', $request->get('reviewed_id'));
     }
 
-    public function edit(Request $request, $review_id)
+    public function update(Request $request, $review_id)
     {
         $review = Review::find($review_id);
         if($review->reviewer_id != Auth::user()->id) {
@@ -65,6 +70,6 @@ class ReviewController extends Controller
         $review->comment = $request->get('comment');
         $review->stars = $request->get('stars');
         $review->save();
-        return Redirect::route('review.view',  $review->reviewed_id);
+        return redirect()->route('review.view',  $review->reviewed_id);
     }
 }

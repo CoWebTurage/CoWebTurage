@@ -33,11 +33,15 @@
                                 <li class="rd-nav-item">
                                     <a class="rd-nav-link" href="{{ route('landing_page') }}">{{ __('About Us') }}</a>
                                 </li>
-                                <li class="rd-nav-item">
-                                    <a class="rd-nav-link" href="{{ route('trips.index') }}">{{ __('My trips') }}</a>
-                                </li>
 
                                 @if(($user = Auth::user()) !== null)
+                                    <li class="rd-nav-item">
+                                        <a class="rd-nav-link" href="{{ route('trips.index') }}">{{ __('My trips') }}</a>
+                                    </li>
+
+                                    <li class="rd-nav-item">
+                                        <a class="button button-white button-sm" href="{{ route('review.create') }}">{{ __('Reviews') }}</a>
+                                    </li>
 
                                     <li class="rd-nav-item">
                                         <a class="button button-white button-sm"
@@ -45,7 +49,7 @@
                                     </li>
                                     <li class="rd-nav-item">
                                         <a class="button button-white button-sm"
-                                           href="{{ route('profile.show') }}">{{ $user->firstname." ".$user->lastname }}</a>
+                                           href="{{ route('profile.show') }}">{{ $user->firstname . " " . $user->lastname }}</a>
                                     </li>
                                     <li class="rd-nav-item">
                                         <form method="POST" action="{{ route('logout') }}">
