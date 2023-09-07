@@ -3625,19 +3625,6 @@ textarea.form-input {
 	border-radius: 7px;
 }
 
-/*.box-booking::before {
-	position: absolute;
-	content: '';
-	top: 12%;
-	right: 3.4%;
-	bottom: -9%;
-	left: 3.4%;
-	background: rgba(0, 0, 0, 0.2);
-	filter: blur(20px);
-	border-radius: 7px;
-	z-index: -1;
-}*/
-
 .booking-form {
 	display: flex;
 	flex-wrap: wrap;
@@ -5106,7 +5093,6 @@ html.boxed body {
 	margin-top: 15px;
 }
 
-/*h2 + p,*/
 .heading-2 + p {
 	margin-top: 30px;
 }
@@ -5128,14 +5114,6 @@ img + p {
 	margin-top: 15px;
 }
 
-/*h3 + img {
-	margin-top: 42px;
-}*/
-
-/*h3 + p {
-	margin-top: 28px;
-}*/
-
 * + .row {
 	margin-top: 30px;
 }
@@ -5151,14 +5129,6 @@ img + p {
 * + .text-block {
 	margin-top: 30px;
 }
-
-/** + .button {
-	margin-top: 30px;
-}
-
-h3 + .button {
-	margin-top: 37px;
-}*/
 
 * + .social-list {
 	margin-top: 30px;
@@ -8204,13 +8174,6 @@ html.rd-navbar-fixed-linked .page {
 	justify-content: space-between;
 	padding: 32px 0;
 }
-
-/*.rd-navbar-classic.rd-navbar-static .rd-navbar-brand img {
-	width: auto;
-	height: auto;
-	max-width: 200px;
-	max-height: 200px;
-}*/
 
 .rd-navbar-classic.rd-navbar-static .rd-navbar-main-element {
 	display: flex;
