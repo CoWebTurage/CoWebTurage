@@ -102,6 +102,3 @@ Fork et pull request sur main. Nécessite que les tests passent et au moins une 
 
 ### CI/CD
 Merge une pull request sur main, changements directement appliqué sur la prod
-
-### Vidéo
-https://www.youtube.com/watch?v=ynXZ3ZDEgXU
