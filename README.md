@@ -96,3 +96,9 @@ Si l'installation s'est passée correctement un dossier `vendor` et `node_module
 Il suffit d'exécuter `sh run-dev.sh` dans le dossier `webApp`.
 Le frontend est accessible sur `localhost` au port défini par la variable d'environnement `APP_PORT` (`80` par défaut).
 La base de donnée est accessible sur `localhost` au port défini par la variable d'environnement `DB_PORT` (`5432` par défaut).
+
+### Contribution au projet
+Fork et pull request sur main. Nécessite que les tests passent et au moins une review.
+
+### CI/CD
+Merge une pull request sur main, changements directement appliqué sur la prod
